@@ -18,28 +18,36 @@ export default function DeviceCard() {
   const [signer, setSigner] = useState(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
-      try {
-        const browserProvider = new BrowserProvider(window.ethereum); // Use BrowserProvider
-        setProvider(browserProvider);
+    const initializeProvider = async () => {
+      if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
+        try {
+          const browserProvider = new BrowserProvider(window.ethereum);
+          setProvider(browserProvider);
 
-        // Fetch accounts and set signer
-        browserProvider.listAccounts().then((accounts) => {
+          // Fetch accounts and set signer
+          const accounts = await browserProvider.listAccounts();
           if (accounts.length > 0) {
             setWalletAddress(accounts[0]);
-            browserProvider.getSigner().then((jsonRpcSigner) => {
-              setSigner(jsonRpcSigner);
-            });
+            const jsonRpcSigner = await browserProvider.getSigner();
+            setSigner(jsonRpcSigner);
           }
-        });
-      } catch (error) {
-        console.error("Error setting up BrowserProvider:", error);
-        triggerNotification("Failed to connect to the wallet.");
+        } catch (error) {
+          console.error("Error setting up BrowserProvider:", error);
+          triggerNotification("Failed to connect to the wallet.");
+        }
+      } else {
+        triggerNotification("No Ethereum wallet detected. Please install MetaMask.");
       }
-    } else {
-      triggerNotification("No Ethereum wallet detected. Please install MetaMask.");
-    }
+    };
+
+    initializeProvider();
   }, []);
+
+  useEffect(() => {
+    if (provider) {
+      fetchContractBalance();
+    }
+  }, [provider, walletAddress]);
 
   const connectWallet = async () => {
     if (!provider) {
@@ -63,20 +71,20 @@ export default function DeviceCard() {
       triggerNotification("Please connect your wallet first.");
       return;
     }
-  
+
     try {
       const smartWalletContract = new ethers.Contract(
         smartwalletAddress,
         smartwalletABI,
         signer
       );
-  
+
       const owner = await smartWalletContract.owner();
       const connectedWallet = await signer.getAddress();
-  
+
       console.log("Contract Owner:", owner);
       console.log("Connected Wallet Address:", connectedWallet);
-  
+
       if (
         typeof connectedWallet === "string" &&
         connectedWallet.toLowerCase() === owner.toLowerCase()
@@ -84,13 +92,16 @@ export default function DeviceCard() {
         const tx = await smartWalletContract.verifyAndWithdraw();
         await tx.wait();
         triggerNotification("Tokens claimed successfully!");
+
+        // Refresh balance after successful withdrawal
+        fetchContractBalance();
       } else {
         triggerNotification("Only the owner of this Smart Wallet can claim tokens.");
       }
     } catch (error) {
       triggerNotification("An error occurred during the claim process.");
     }
-  };  
+  };
 
   const fetchContractBalance = async () => {
     if (!provider) {
