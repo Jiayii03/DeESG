@@ -28,7 +28,7 @@ contract GreenTokenDistributor is Ownable {
         DataStorage _dataStorage,
         GreenToken _greenToken,
         address _serverWallet
-    ) Ownable(0x7bcbaE2C9Ebf878Fdbb4ADB750f58A8fdf74803B) {
+    ) Ownable(0xf645324Ac8EEFE5F87392eB2Fc85f5443e0022F4) {
         dataStorage = _dataStorage;
         greenToken = _greenToken;
         serverWallet = _serverWallet;
