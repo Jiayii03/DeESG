@@ -22,20 +22,20 @@ export default function App() {
       </TableHeader>
       <TableBody>
         <TableRow key="1">
-          <TableCell>Tony Reichert</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow key="2">
-          <TableCell>Zoey Lang</TableCell>
-          <TableCell>Paused</TableCell>
+          <TableCell>Market Cap ($USD)</TableCell>
+          <TableCell>1.00 trillion</TableCell>
         </TableRow>
         <TableRow key="3">
-          <TableCell>Jane Fisher</TableCell>
-          <TableCell>Active</TableCell>
+          <TableCell>Number of Devices</TableCell>
+          <TableCell>125</TableCell>
+        </TableRow>
+        <TableRow key="2">
+          <TableCell>Number of Employees</TableCell>
+          <TableCell>121,858</TableCell>
         </TableRow>
         <TableRow key="4">
-          <TableCell>William Howard</TableCell>
-          <TableCell>Vacation</TableCell>
+          <TableCell>GTK Token Earned</TableCell>
+          <TableCell>120</TableCell>
         </TableRow>
       </TableBody>
     </Table>

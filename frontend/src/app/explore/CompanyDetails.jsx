@@ -13,11 +13,15 @@ export default function App() {
     <div className="flex flex-col border-e-2 p-3">
       <div className="flex justify-start items-center gap-3">
         <div>
-          <Avatar size="lg" name="test"></Avatar>
+          <Avatar
+            src=""
+            size="lg"
+            radius="sm"
+          />
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-lg font-semibold">
-            <span>Company Name</span>
+            <span>CapitalX</span>
           </div>
           <div className="text-sm font-light text-gray-400">
             <span>ESG Score</span>
@@ -31,7 +35,7 @@ export default function App() {
       </div>
 
       <div className="flex mt-3 items-center p-3">
-        <span className="text-4xl me-3 font-semibold">5.0</span>
+        <span className="text-4xl me-3 font-semibold">60.5</span>
         <i
           className="bi bi-caret-up-fill text-green-300 me-1"
           style={{ fontSize: "1.5rem" }}
@@ -51,9 +55,8 @@ export default function App() {
             label: "tracking-wider font-medium text-default-600",
             value: "text-foreground/60",
           }}
-          label="Poor"
+          label="Low Risk"
           value={65}
-          showValueLabel={true}
         />
       </div>
 
