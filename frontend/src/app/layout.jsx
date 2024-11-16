@@ -4,7 +4,6 @@ import Head from "next/head";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/footer";
 import Providers from "./components/WagmiProvider";
-import Providers from "./components/WagmiProvider";
 import { NextUIProvider } from "@nextui-org/react";
 import { Instrument_Sans } from 'next/font/google';
 

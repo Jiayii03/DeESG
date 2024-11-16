@@ -42,7 +42,7 @@ const Header = () => {
               </div>
 
               <Link
-                href="/partners"
+                href="/"
                 className="text-gray-600 hover:text-gray-900"
               >
                 Team
@@ -58,7 +58,7 @@ const Header = () => {
 
             <div>
               <Link
-                href="/try-now"
+                href="/explore"
                 className="bg-[#62825D] text-white px-6 py-2.5 rounded-full hover:bg-[#3D5300] transition-colors"
               >
                 Start Now
