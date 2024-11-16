@@ -22,7 +22,7 @@ export default function Home() {
         <section>
           <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen mt-12 pt-32 py-12 mb-10">
             <div className="flex flex-col gap-8 row-start-2 items-center text-center max-w-6xl">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-space-mono tracking-tight mt-10 ">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-space-mono tracking-tight ">
                 <div className="h-[5vh]" />
                 <span className="text-green-600">Explore</span> the Future
                 <br />

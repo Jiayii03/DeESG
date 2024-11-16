@@ -2,8 +2,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Head from "next/head";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/footer";
 import Providers from "./components/WagmiProvider"; 
 import { NextUIProvider } from "@nextui-org/react";
+
 
 const suisseIntl = localFont({
   src: [
@@ -40,6 +42,7 @@ export default function RootLayout({ children }) {
           <Providers>
             <Header />
             {children}
+            <Footer/>
           </Providers>
         </NextUIProvider>
       </body>
