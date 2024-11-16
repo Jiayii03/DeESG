@@ -22,11 +22,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer
-      className={`bg-white h-20 w-screen ${
-        isSticky ? "absolute bottom-0" : "absolute bottom-0 w-screen"
-      }`}
-    >
+    <footer className="bg-white h-20 bottom-0 w-screen relative mt-auto">
       <div className="border-t border-gray-200" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4">

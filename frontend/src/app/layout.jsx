@@ -31,21 +31,21 @@
     },
   };
 
-  export default function RootLayout({ children }) {
-    return (
-      <html lang="en" className="h-full">
-        <head>
-          <link rel="icon" href="/app_logo.png" />
-        </head>
-        <body className="flex flex-col h-full min-h-screen antialiased bg-[#f6f6f6]">
-          <NextUIProvider>
-            <Providers>
-              <Header />
-              <div className="flex-grow">{children}</div>
-              <Footer />
-            </Providers>
-          </NextUIProvider>
-        </body>
-      </html>
-    );
-  }
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <Head>
+        <link rel="icon" href="/app_logo.png" />
+      </Head>
+      <body className={`${suisseIntl.variable} antialiased bg-[#f6f6f6] min-h-[100vh] flex flex-col` }>
+        <NextUIProvider>
+          <Providers>
+            <Header />
+            {children}
+          </Providers>
+        </NextUIProvider>
+        <Footer/>
+      </body>
+    </html>
+  );
+}
