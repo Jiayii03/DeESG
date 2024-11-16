@@ -11,6 +11,27 @@ import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { sepolia } from "wagmi/chains"; // Import Ethereum Sepolia Testnet
 
+
+
+const rivestTestnet = {
+  id: 21097,
+  name: 'Inco Rivest Testnet',
+  network: 'rivest-testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'INCO',
+    symbol: 'INCO',
+  },
+  rpcUrls: {
+    public: { http: ['https://validator.rivest.inco.org/'] },
+    default: { http: ['https://validator.rivest.inco.org/'] },
+  },
+  blockExplorers: {
+    default: { name: 'Explorer', url: 'https://explorer.rivest.inco.org/' },
+  },
+  testnet: true,
+}
+
 // Initialize the QueryClient for React Query
 const queryClient = new QueryClient();
 
@@ -18,9 +39,11 @@ const queryClient = new QueryClient();
 const config = getDefaultConfig({
   appName: "DeESG",
   projectId: "YOUR_PROJECT_ID",
-  chains: [sepolia], // Only Sepolia Testnet
+  chains: [sepolia, rivestTestnet], // Only Sepolia Testnet
   ssr: true, // Required for SSR apps
 });
+
+
 
 export default function Providers({ children }) {
   return (

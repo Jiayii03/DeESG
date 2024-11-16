@@ -7,6 +7,8 @@ import EsgScore from "./profile/EsgScore";
 
 const Explore = () => {
 
+  
+
   return (
     <main>
       <div className="flex p-8 pt-0 gap-3">
