@@ -3,7 +3,15 @@ import { Chip } from "@nextui-org/react";
 import { Info } from "lucide-react";
 import { Progress } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-import ProfileTable from "./ProfileTable";
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react";
+
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function App() {
@@ -26,7 +34,12 @@ export default function App() {
           </div>
         </div>
         <div>
-          <Chip color="warning" radius="sm" size="sm" startContent={<span>#</span>}>
+          <Chip
+            color="warning"
+            radius="sm"
+            size="sm"
+            startContent={<span>#</span>}
+          >
             Pending
           </Chip>
         </div>
@@ -60,7 +73,30 @@ export default function App() {
       </div>
 
       <div className="flex mt-5">
-        <ProfileTable />
+        <Table
+          hideHeader
+          removeWrapper
+          aria-label="Example static collection table"
+        >
+          <TableHeader>
+            <TableColumn>NAME</TableColumn>
+            <TableColumn>STATUS</TableColumn>
+          </TableHeader>
+          <TableBody>
+            <TableRow key="1">
+              <TableCell>Sectors</TableCell>
+              <TableCell>--</TableCell>
+            </TableRow>
+            <TableRow key="2">
+              <TableCell>Twitter</TableCell>
+              <TableCell>--</TableCell>
+            </TableRow>
+            <TableRow key="3">
+              <TableCell>Company Website</TableCell>
+              <TableCell>--</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

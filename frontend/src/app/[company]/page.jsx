@@ -1,11 +1,11 @@
 "use client";
 
-import Profile from "./profile/page";
+import Profile from "./profile/Profile";
 import { Button } from "@nextui-org/react";
-import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Divider } from "@nextui-org/react";
 import DevicesTable from "./profile/DevicesTable";
+import EsgScore from "./profile/EsgScore";
 
 const Explore = () => {
   const router = useRouter();
@@ -19,20 +19,9 @@ const Explore = () => {
 
         <div className="basis-8/12">
           <div className="flex flex-col justify-start">
-            <div className="flex flex-col justify-start gap-10 p-10">
-              <div className="flex justify-between">
-                <h1 className="text-2xl">ESG Score</h1>
-                <Button>Evaluate</Button>
-              </div>
-            </div>
+            <EsgScore />
             <Divider />
-            <div className="flex flex-col justify-start gap-10 p-10">
-              <div className="flex justify-between">
-                <h1 className="text-2xl">Devices</h1>
-                <Button>Add</Button>
-              </div>
-              <DevicesTable />
-            </div>
+            <DevicesTable />
           </div>
         </div>
       </div>
