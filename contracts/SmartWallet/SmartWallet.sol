@@ -12,19 +12,23 @@ contract SmartWallet {
     IERC20 public greenToken;
 
     event OwnerUpdated(address indexed newOwner);
+    event GreenTokenUpdated(address indexed newGreenToken);
     event TokensWithdrawn(address indexed owner, uint256 amount);
 
     modifier onlyDeployer() {
         require(msg.sender == deployer, "Only deployer can call this function");
-        _;
+        _; 
     }
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
-        _;
+        _; 
     }
 
     constructor(address _initialOwner, address _greenTokenAddress) {
+        require(_initialOwner != address(0), "Owner cannot be the zero address");
+        require(_greenTokenAddress != address(0), "Green Token address cannot be the zero address");
+
         owner = _initialOwner;
         deployer = msg.sender;
         greenToken = IERC20(_greenTokenAddress);
@@ -34,6 +38,12 @@ contract SmartWallet {
         require(newOwner != address(0), "New owner cannot be the zero address");
         owner = newOwner;
         emit OwnerUpdated(newOwner);
+    }
+
+    function updateGreenTokenAddress(address newGreenToken) external onlyDeployer {
+        require(newGreenToken != address(0), "Green Token address cannot be the zero address");
+        greenToken = IERC20(newGreenToken);
+        emit GreenTokenUpdated(newGreenToken);
     }
 
     function verifyAndWithdraw() external onlyOwner {

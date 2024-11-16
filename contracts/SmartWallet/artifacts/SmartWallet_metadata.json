@@ -38,6 +38,19 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "newGreenToken",
+						"type": "address"
+					}
+				],
+				"name": "GreenTokenUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
 					}
@@ -118,6 +131,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newGreenToken",
+						"type": "address"
+					}
+				],
+				"name": "updateGreenTokenAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -244,11 +270,11 @@
 			]
 		},
 		"ETHBangkok/SmartWallet/SmartWallet.sol": {
-			"keccak256": "0x70a1f5c6a1ec40e6da6729bbde352390a28efdda9032095b212429b9bb41a67a",
+			"keccak256": "0x2bece4e35c78bef56157b8d9a84b827643973dfe6787aa01cdeab2da34acf6fd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e1e6931366ef427232f8f1721366773d00f3f2f632ef633a8285fc358e958bd1",
-				"dweb:/ipfs/QmXnrhVwpKxAkDWwMNNTwxRqCg5wqhSKpJGniLhRgv8yLK"
+				"bzz-raw://7bab8926138208bf746d675b6c6d70cd453cf4603630ed989b8699c51fc516ec",
+				"dweb:/ipfs/Qmc4QcFj8mWR4xPVZFT6VNZ2cXKigkixcyppoGfCJGPriS"
 			]
 		}
 	},

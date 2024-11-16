@@ -351,6 +351,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getAllHolders",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -770,11 +783,11 @@
 			]
 		},
 		"ETHBangkok/Socials/MemberNFT.sol": {
-			"keccak256": "0x9716a61ce8006e56ec1f4f17618457f0c105c84a45b325f6fdaf888714612518",
+			"keccak256": "0x88006e5694da7a2c4bb811364b8069f6998dfb07f167de5ba05b848b22e5c3ce",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d328655384e1a389cae1bec325dfbb6df6391bce08e8a0b42ff4eba148f9cc94",
-				"dweb:/ipfs/QmZz5kxRtnYFhzcXVFWnsevJaub3x96Yo9pE6moDchWrAU"
+				"bzz-raw://1e7c7c4a3bb8691b4d7a87f536626a5abb389470bb4056433ba340f13d29876e",
+				"dweb:/ipfs/QmdsSY5Nv2nMtPwWhDFB39SsCk9qUC1D8aoCLhKLovxWS1"
 			]
 		}
 	},

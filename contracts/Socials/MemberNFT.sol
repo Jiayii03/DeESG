@@ -8,6 +8,10 @@ contract MembershipNFT is ERC1155, ERC1155Burnable {
     uint256 public constant MEMBER = 1;
     string private _contractURI;
 
+    mapping(address => bool) private holdersMapping;
+
+    address[] private holders;
+
     constructor() 
         ERC1155("https://teal-rapid-sloth-873.mypinata.cloud/ipfs/QmRkCiWxtNdaAKH8PyobwRWzox1EoUBGu5y1pnnBe7c2Uc/{id}.json") 
     {
@@ -16,6 +20,11 @@ contract MembershipNFT is ERC1155, ERC1155Burnable {
 
     function mint(address to) public {
         _mint(to, MEMBER, 1, "");
+
+        if (!holdersMapping[to]) {
+            holdersMapping[to] = true;
+            holders.push(to);
+        }
     }
 
     function contractURI() public view returns (string memory) {
@@ -31,6 +40,11 @@ contract MembershipNFT is ERC1155, ERC1155Burnable {
     ) public virtual override {
         require(from == address(0) || to == address(0), "Transfers disabled");
         super.safeTransferFrom(from, to, id, amount, data);
+
+        if (to != address(0) && !holdersMapping[to]) {
+            holdersMapping[to] = true;
+            holders.push(to);
+        }
     }
 
     function safeBatchTransferFrom(
@@ -42,5 +56,14 @@ contract MembershipNFT is ERC1155, ERC1155Burnable {
     ) public virtual override {
         require(from == address(0) || to == address(0), "Batch transfers disabled");
         super.safeBatchTransferFrom(from, to, ids, amounts, data);
+
+        if (to != address(0) && !holdersMapping[to]) {
+            holdersMapping[to] = true;
+            holders.push(to);
+        }
+    }
+
+    function getAllHolders() public view returns (address[] memory) {
+        return holders;
     }
 }

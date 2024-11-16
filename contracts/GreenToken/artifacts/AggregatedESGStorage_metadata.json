@@ -311,11 +311,7 @@
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"getLatestAggregatedData()": {
-					"notice": "Retrieves the latest aggregated ESG data"
-				}
-			},
+			"methods": {},
 			"version": 1
 		}
 	},
@@ -360,11 +356,11 @@
 			]
 		},
 		"ETHBangkok/GreenToken/AggegatedESGStorage.sol": {
-			"keccak256": "0x749dbe6b81fb8fd6e3226d1d30135b4a69922a04bb93dbe5420d6a0c0bc31b7a",
+			"keccak256": "0x5328c1f1f17b4982ac982937051d244f68fc3e116a5d92f2115c485eb671b969",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4899fd9081943afb480eaa5b3f722c417fd67758b79729d7cfcfd063533b3c97",
-				"dweb:/ipfs/Qme2TCdngF3ViQxExwJL7cTvc7EjmayszUrH7odEhTB2Lp"
+				"bzz-raw://00016f5fee2b514204e0e45872d124f95d01fdd5e08645ea7dc36b0b40755434",
+				"dweb:/ipfs/QmNnyJ2L4BCzGsQ8bjR5dbBmwPUqWw66cdbG25RZnvq4dD"
 			]
 		}
 	},
