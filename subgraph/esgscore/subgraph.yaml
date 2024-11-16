@@ -1,0 +1,50 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AggregateAiData
+    network: sepolia
+    source:
+      address: "0x33652136957dE346e0b5B0Cf04038B18B55e9D1D"
+      abi: AggregateAiData
+      startBlock: 7087648
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ChainlinkCancelled
+        - ChainlinkFulfilled
+        - ChainlinkRequested
+        - ESGScoreReceived
+        - JobIdUpdated
+        - OracleAddressUpdated
+        - OwnershipTransferRequested
+        - OwnershipTransferred
+        - RequestSent
+      abis:
+        - name: AggregateAiData
+          file: ./abis/AggregateAiData.json
+      eventHandlers:
+        - event: ChainlinkCancelled(indexed bytes32)
+          handler: handleChainlinkCancelled
+        - event: ChainlinkFulfilled(indexed bytes32)
+          handler: handleChainlinkFulfilled
+        - event: ChainlinkRequested(indexed bytes32)
+          handler: handleChainlinkRequested
+        - event: ESGScoreReceived(indexed bytes32,uint256)
+          handler: handleESGScoreReceived
+        - event: JobIdUpdated(string)
+          handler: handleJobIdUpdated
+        - event: OracleAddressUpdated(address)
+          handler: handleOracleAddressUpdated
+        - event: OwnershipTransferRequested(indexed address,indexed address)
+          handler: handleOwnershipTransferRequested
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RequestSent(indexed bytes32)
+          handler: handleRequestSent
+      file: ./src/aggregate-ai-data.ts

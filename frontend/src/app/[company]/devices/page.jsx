@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { Leaf, Battery, Coins } from "lucide-react";
-import { useParams } from "next/navigation";
 import DeviceCard from "./DeviceCard";
 import DeviceData from "./DeviceData";
 
