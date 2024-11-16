@@ -20,3 +20,52 @@ body {
   background: var(--background);
   font-family: var(--font-suisse-intl);
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate-reverse-slow {
+  from {
+    transform: rotate(3deg);
+  }
+  to {
+    transform: rotate(-3deg);
+  }
+}
+
+.animate-rotate-reverse-slow {
+  animation: rotate-reverse-slow 6s ease-in-out infinite alternate;
+}
+
+/* @font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');≈
+  font-weight: normal;
+  font-style: normal;
+} */
+
+@keyframes gentle-rock {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+
+.animate-rock {
+  animation: gentle-rock 3s ease-in-out infinite;
+}

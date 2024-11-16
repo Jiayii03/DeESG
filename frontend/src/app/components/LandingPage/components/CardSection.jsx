@@ -10,10 +10,10 @@ export default function Home() {
   const problems = [
     {
       title: "Biased Evaluations",
-      titleFont: "var(--font-instrument-sans)", // Add font specification for title
+      titleFont: "var(--font-vcr)",
       description:
         "Traditional ESG evaluations often suffer from subjective biases and inconsistent methodologies, leading to unreliable assessments.",
-      descriptionFont: "var(--font-space-mono)", // Add font specification for description
+      descriptionFont: "var(--font-space-mono)",
       link: "https://example.com/biased-evaluations",
       color: "#2E7D32",
     },
@@ -60,7 +60,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-6xl font-bold text-center mb-0"
+        className="text-6xl font-bold text-center mb-0 font-vcr"
       >
         Problems with Traditional ESG
       </motion.h2>
