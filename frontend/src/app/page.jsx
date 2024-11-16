@@ -172,25 +172,25 @@ export default function Home() {
               <div className="flex justify-center items-center gap-16 px-8 pt-8 mb-10">
                 <div className="relative group">
                   <Image
-                    src="/Greenesis_Techstack/Linea.png"
-                    alt="Linea"
+                    src="/Greenesis_Techstack/nounsDAO.png"
+                    alt="NounsDAO"
                     width={150}
                     height={150}
-                    className="object-contain"
+                    className="object-contain rounded-full"
                   />
                   <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-700 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    Linea
+                    NounsDAO
                   </span>
                 </div>
                 <div className="relative group">
                   <Image
-                    src="/Greenesis_Techstack/Mina2.png"
-                    alt="Mina"
-                    width={150}
+                    src="/Greenesis_Techstack/incoNetwork.png"
+                    alt="Inco"
+                    width={100}
                     height={60}
                   />
                   <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-700 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                    Mina
+                    Inco
                   </span>
                 </div>
                 <div className="relative group">
