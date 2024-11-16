@@ -6,18 +6,18 @@ import { Button } from "@nextui-org/react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
-import { useConnectModal } from "@rainbow-me/rainbowkit"; // Correct hook for opening modal
+import { useConnectModal } from "@rainbow-me/rainbowkit"; 
 
 const Explore = () => {
   const router = useRouter();
   const { isConnected } = useAccount();
-  const { openConnectModal } = useConnectModal(); // Correct hook for modal
+  const { openConnectModal } = useConnectModal(); 
 
   const handleAddCompanyClick = () => {
     if (isConnected) {
       router.push("/add-company");
     } else {
-      openConnectModal(); // Trigger RainbowKit modal for wallet connection
+      openConnectModal(); 
     }
   };
 

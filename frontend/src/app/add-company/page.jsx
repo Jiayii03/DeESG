@@ -1,28 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Input,
   Button,
   Autocomplete,
   AutocompleteItem,
+  Avatar,
 } from "@nextui-org/react";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useAccount } from "wagmi"; // Import wagmi's useAccount hook
+import { useAccount } from "wagmi";
 
 function Page() {
   const router = useRouter();
-  const { address, isConnected } = useAccount(); // Get wallet address and connection status
-
-  const companySizes = [
-    { value: "1-10", label: "1-10 employees" },
-    { value: "11-50", label: "11-50 employees" },
-    { value: "51-100", label: "51-100 employees" },
-    { value: "101-500", label: "101-500 employees" },
-    { value: "501-1000", label: "501-1000 employees" },
-    { value: ">1000", label: ">1000 employees" },
-  ];
+  const { address, isConnected } = useAccount();
+  const [nounsAvatar, setNounsAvatar] = useState("");
 
   const sectors = [
     { value: "technology", label: "Technology" },
@@ -42,15 +35,29 @@ function Page() {
 
   const [errors, setErrors] = useState({});
 
+  const generateNounsAvatar = () => {
+    const baseUrl = "https://noun-api.com/beta/pfp";
+    const params = new URLSearchParams({
+      size: "320", // Fixed size
+      timestamp: Date.now().toString(), // Unique parameter to prevent caching
+    });
+
+    setNounsAvatar(`${baseUrl}?${params.toString()}`);
+  };
+
+  useEffect(() => {
+    generateNounsAvatar(); // Generate a random avatar on initial load
+  }, []);
+
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" })); // Clear error on input
+    setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const handleSubmit = () => {
     if (!isConnected) {
       alert("Please connect your wallet before submitting.");
-      return; // Prevent navigation if wallet is not connected
+      return;
     }
 
     const newErrors = {};
@@ -66,7 +73,6 @@ function Page() {
       return;
     }
 
-    // Proceed to the next page if no errors
     router.push("/company");
   };
 
@@ -86,9 +92,17 @@ function Page() {
           <h2 className="text-lg text-gray-400">Add your company</h2>
         </div>
 
-        <div className="flex items-center justify-center mt-8">
+        <div className="flex items-center justify-center mt-8 font-semibold gap-5">
+          <Avatar
+            src={nounsAvatar}
+            alt="Nouns Avatar"
+            className="w-20 h-20 cursor-pointer"
+            onClick={generateNounsAvatar} // Generate a new random avatar on click
+            onError={() => console.error("Error loading avatar")}
+          />
+
           {isConnected ? (
-            <span>{address}</span> // Display connected wallet address
+            <span>{address}</span>
           ) : (
             <span className="text-red-500">Please connect your wallet.</span>
           )}
@@ -160,7 +174,7 @@ function Page() {
 
         <div className="flex justify-end items-center mt-10">
           <Button
-            disabled={!isConnected} // Disable the button if wallet is not connected
+            disabled={!isConnected}
             endContent={<MoveRight size={16} />}
             onPress={handleSubmit}
           >

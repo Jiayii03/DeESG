@@ -3,6 +3,7 @@ import { Avatar } from "@nextui-org/react";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { color } from "framer-motion";
 
 export default function App() {
   const router = useRouter();
@@ -32,9 +33,14 @@ export default function App() {
       <div className="flex flex-col gap-3 justify-start items-start">
         <Card className="w-full p-2">
           <CardHeader>
-            <div className="flex justify-start items-center gap-3">
-              <Avatar name="device"></Avatar>
-              <span className="text-semibold text-xl">DEV001</span>
+            <div className="flex justify-between items-center gap-3 w-full">
+              <div className="flex justify-start items-center gap-3">
+                <Avatar name="device"></Avatar>
+                <span className="text-semibold text-xl">DEV001</span>
+              </div>
+              <div>
+                <Button style={{backgroundColor:'#8884d8'}} className="text-white">Claim</Button>
+              </div>
             </div>
           </CardHeader>
           <CardBody>
