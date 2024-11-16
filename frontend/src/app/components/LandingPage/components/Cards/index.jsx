@@ -41,7 +41,7 @@ const Card = ({
           style={{
             fontFamily: "var(--font-instrument-sans)",
             fontWeight: 700,
-            fontSize: "clamp(2rem, 7vw, 7rem)",
+            fontSize: "clamp(2rem, 5vw, 5rem)",
           }}
         >
           {title}
