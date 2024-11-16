@@ -1,23 +1,4 @@
-## To get input from sensor (every 1 second), run
-
-```bash
-cd ~/ethbkk
-node DHTsensor.js
-```
-
-## To get input from sensor and display on the LCD, run
-
-```bash
-cd ~/ethbkk
-sudo python3 DHTSensorWithDisplay.py
-```
-
-or 
-
-```bash
-cd ~/ethbkk
-pm2 start DHTSensorWithDisplay.py --name DisplayLCD
-```
+# DeESG Raspberry Pi
 
 ## To activate server API (local network), run
 
@@ -25,22 +6,24 @@ pm2 start DHTSensorWithDisplay.py --name DisplayLCD
 cd ~/ethbkk
 pm2 start server.js --name "SensorAPI"
 ```
-
-run `pm2 list` to check if it is running
 To test the API, run curl http://greenesis:3000/data (from local network)
 
-## To expose the API endpoint (from Internet), run
+
+## To get input from sensor and display on the LCD, run
 
 ```bash
-ngrok http 3000
-```
+cd ~/ethbkk
+sudo python3 DHTSensorWithDisplay.py
 
-Note that this is not running in the background
-To test the API, run curl http://.........../data (publicly)
+# or 
+
+pm2 start DHTSensorWithDisplay.py --name DisplayLCD
+```
 
 ## To run ngrok in the background, run
 
 ```bash
+cd ~/ethbkk
 pm2 start ./start-ngrok.sh --name ngrok
 ```
 
@@ -52,8 +35,11 @@ curl -s http://127.0.0.1:4040/api/tunnels | grep -o 'https://[^"]*'
 
 Then run curl http://.............../data (publicly) to get the output
 
+## To expose the API endpoint (from Internet), run
 
+```bash
+ngrok http 3000
+```
 
-
-
-
+Note that this is not running in the background
+To test the API, run curl http://.........../data (publicly)
