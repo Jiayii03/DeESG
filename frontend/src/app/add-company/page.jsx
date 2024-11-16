@@ -13,11 +13,13 @@ import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 import CompanyDetails from "../abis/CompanyDetails.json";
-const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_COMPANY_DETAILS_CONTRACT_ADDRESS;
+const CONTRACT_ADDRESS =
+  process.env.NEXT_PUBLIC_COMPANY_DETAILS_CONTRACT_ADDRESS;
 
 function Page() {
   const router = useRouter();
   const { address, isConnected } = useAccount();
+  const [nounsIndex, setNounsIndex] = useState(0); // Track current Nouns avatar index
   const [nounsAvatar, setNounsAvatar] = useState("");
 
   const sectors = [
@@ -38,19 +40,31 @@ function Page() {
 
   const [errors, setErrors] = useState({});
 
-  const generateNounsAvatar = () => {
+  const generateNounsAvatar = (index) => {
     const baseUrl = "https://noun-api.com/beta/pfp";
     const params = new URLSearchParams({
       size: "320",
-      timestamp: Date.now().toString(),
+      id: index.toString(), // Use index for specific Noun
     });
 
-    setNounsAvatar(`${baseUrl}?${params.toString()}`);
+    return `${baseUrl}?${params.toString()}`;
   };
 
   useEffect(() => {
-    generateNounsAvatar();
+    // Load stored index or use default
+    const storedIndex = localStorage.getItem("nounsIndex");
+    const initialIndex = storedIndex ? parseInt(storedIndex, 10) : 0;
+    setNounsIndex(initialIndex);
+    setNounsAvatar(generateNounsAvatar(initialIndex));
   }, []);
+
+  const handleAvatarChange = (direction) => {
+    const newIndex = direction === "left" ? nounsIndex - 1 : nounsIndex + 1;
+    const normalizedIndex = (newIndex + 10000) % 10000; // Ensure index stays within range
+    setNounsIndex(normalizedIndex);
+    setNounsAvatar(generateNounsAvatar(normalizedIndex));
+    localStorage.setItem("nounsIndex", normalizedIndex); // Save index to local storage
+  };
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -137,13 +151,18 @@ function Page() {
         </div>
 
         <div className="flex items-center justify-center mt-8 font-semibold gap-5">
+          <Button isIconOnly onPress={() => handleAvatarChange("left")}>
+            <MoveLeft size={16} />
+          </Button>
           <Avatar
             src={nounsAvatar}
             alt="Nouns Avatar"
             className="w-20 h-20 cursor-pointer"
-            onClick={generateNounsAvatar}
             onError={() => console.error("Error loading avatar")}
           />
+          <Button isIconOnly onPress={() => handleAvatarChange("right")}>
+            <MoveRight size={16} />
+          </Button>
 
           {isConnected ? (
             <span>{address}</span>
