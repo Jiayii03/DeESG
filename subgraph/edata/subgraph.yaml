@@ -1,0 +1,26 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: EData
+    network: sepolia
+    source:
+      address: "0xDcab8f95ffE674Fb14ca2A2a56F032709bdE4102"
+      abi: EData
+      startBlock: 7088751
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DataStored
+      abis:
+        - name: EData
+          file: ./abis/EData.json
+      eventHandlers:
+        - event: DataStored(uint256,uint256,uint256,uint256,uint256,uint256,indexed address,uint256)
+          handler: handleDataStored
+      file: ./src/e-data.ts
