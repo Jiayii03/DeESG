@@ -1,14 +1,11 @@
 "use client";
 
 import Profile from "./profile/Profile";
-import { Button } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
 import { Divider } from "@nextui-org/react";
 import DevicesTable from "./profile/DevicesTable";
 import EsgScore from "./profile/EsgScore";
 
 const Explore = () => {
-  const router = useRouter();
 
   return (
     <main>
