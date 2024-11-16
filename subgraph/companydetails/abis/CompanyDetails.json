@@ -1,0 +1,140 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "companyName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "twitterHandle",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "companyWebsite",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "sector",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "avatarUrl",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "submittedBy",
+        "type": "address"
+      }
+    ],
+    "name": "CompanySubmitted",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "string", "name": "_companyName", "type": "string" },
+      { "internalType": "string", "name": "_twitterHandle", "type": "string" },
+      { "internalType": "string", "name": "_companyWebsite", "type": "string" },
+      { "internalType": "string", "name": "_sector", "type": "string" },
+      { "internalType": "string", "name": "_avatarUrl", "type": "string" }
+    ],
+    "name": "submitCompany",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "companies",
+    "outputs": [
+      { "internalType": "string", "name": "companyName", "type": "string" },
+      { "internalType": "string", "name": "twitterHandle", "type": "string" },
+      { "internalType": "string", "name": "companyWebsite", "type": "string" },
+      { "internalType": "string", "name": "sector", "type": "string" },
+      { "internalType": "string", "name": "avatarUrl", "type": "string" },
+      { "internalType": "address", "name": "submittedBy", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllCompanies",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "string", "name": "companyName", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "twitterHandle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "companyWebsite",
+            "type": "string"
+          },
+          { "internalType": "string", "name": "sector", "type": "string" },
+          { "internalType": "string", "name": "avatarUrl", "type": "string" },
+          {
+            "internalType": "address",
+            "name": "submittedBy",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct CompanyProfile.Company[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "index", "type": "uint256" }
+    ],
+    "name": "getCompany",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "string", "name": "companyName", "type": "string" },
+          {
+            "internalType": "string",
+            "name": "twitterHandle",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "companyWebsite",
+            "type": "string"
+          },
+          { "internalType": "string", "name": "sector", "type": "string" },
+          { "internalType": "string", "name": "avatarUrl", "type": "string" },
+          {
+            "internalType": "address",
+            "name": "submittedBy",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct CompanyProfile.Company",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

@@ -1,8 +1,9 @@
+"use client";
+
 import { Avatar } from "@nextui-org/avatar";
 import { Chip } from "@nextui-org/react";
 import { Info } from "lucide-react";
 import { Progress } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
 import {
   Table,
   TableHeader,
@@ -11,10 +12,18 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
+import { useSearchParams } from "next/navigation";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function App() {
+  const searchParams = useSearchParams();
+
+  const companyName = searchParams.get("companyName") || "Company Name";
+  const twitterHandle = searchParams.get("twitterHandle") || "--";
+  const companyWebsite = searchParams.get("companyWebsite") || "--";
+  const sector = searchParams.get("sector") || "--";
+
   return (
     <div className="flex flex-col border-e-2 p-3">
       <div className="flex mb-20">
@@ -23,11 +32,11 @@ export default function App() {
 
       <div className="flex justify-start items-center gap-3">
         <div>
-          <Avatar size="lg" name="test"></Avatar>
+          <Avatar size="lg" src="https://noun-api.com/beta/pfp?size=320" />
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-lg font-semibold">
-            <span>Company Name</span>
+            <span>{companyName}</span>
           </div>
           <div className="text-sm font-light text-gray-400">
             <span>ESG Score</span>
@@ -73,11 +82,7 @@ export default function App() {
       </div>
 
       <div className="flex mt-5">
-        <Table
-          hideHeader
-          removeWrapper
-          aria-label="Example static collection table"
-        >
+        <Table hideHeader removeWrapper aria-label="Company Details">
           <TableHeader>
             <TableColumn>NAME</TableColumn>
             <TableColumn>STATUS</TableColumn>
@@ -85,15 +90,15 @@ export default function App() {
           <TableBody>
             <TableRow key="1">
               <TableCell>Sectors</TableCell>
-              <TableCell>--</TableCell>
+              <TableCell>{sector}</TableCell>
             </TableRow>
             <TableRow key="2">
               <TableCell>Twitter</TableCell>
-              <TableCell>--</TableCell>
+              <TableCell>{twitterHandle}</TableCell>
             </TableRow>
             <TableRow key="3">
               <TableCell>Company Website</TableCell>
-              <TableCell>--</TableCell>
+              <TableCell>{companyWebsite}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

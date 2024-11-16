@@ -11,6 +11,9 @@ import {
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
+import { ethers } from "ethers";
+import CompanyDetails from "../abis/CompanyDetails.json";
+const CONTRACT_ADDRESS = "0x101535944e89e03734d7f09A6cbF510A95139E6D";
 
 function Page() {
   const router = useRouter();
@@ -38,15 +41,15 @@ function Page() {
   const generateNounsAvatar = () => {
     const baseUrl = "https://noun-api.com/beta/pfp";
     const params = new URLSearchParams({
-      size: "320", // Fixed size
-      timestamp: Date.now().toString(), // Unique parameter to prevent caching
+      size: "320",
+      timestamp: Date.now().toString(),
     });
 
     setNounsAvatar(`${baseUrl}?${params.toString()}`);
   };
 
   useEffect(() => {
-    generateNounsAvatar(); // Generate a random avatar on initial load
+    generateNounsAvatar();
   }, []);
 
   const handleChange = (field, value) => {
@@ -54,7 +57,7 @@ function Page() {
     setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isConnected) {
       alert("Please connect your wallet before submitting.");
       return;
@@ -73,11 +76,52 @@ function Page() {
       return;
     }
 
-    router.push("/company");
+    try {
+      const { ethereum } = window;
+      if (!ethereum) {
+        console.error("Ethereum object not found, please install MetaMask!");
+        alert("Please install MetaMask!");
+        return;
+      }
+
+      console.log("Ethereum object found:", ethereum);
+
+      await ethereum.request({ method: "eth_requestAccounts" });
+      console.log("Wallet connected");
+
+      const provider = new ethers.BrowserProvider(ethereum);
+      const signer = await provider.getSigner();
+      console.log("Signer retrieved:", signer);
+
+      const contract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        CompanyDetails.abi || CompanyDetails,
+        signer
+      );
+      console.log("Contract instance created:", contract);
+
+      const tx = await contract.submitCompany(
+        form.companyName,
+        form.twitterHandle,
+        form.companyWebsite,
+        form.sector,
+        nounsAvatar
+      );
+      console.log("Transaction sent:", tx.hash);
+
+      await tx.wait();
+      console.log("Transaction confirmed");
+
+      alert("Company submitted successfully!");
+      router.push("/company");
+    } catch (error) {
+      console.error("Error in handleSubmit:", error);
+      alert("Submission failed. Check the console for details.");
+    }
   };
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 mb-10">
       <div className="basis-3/12"></div>
       <div className="basis-6/12">
         <div className="flex flex-col items-start gap-2">
@@ -97,7 +141,7 @@ function Page() {
             src={nounsAvatar}
             alt="Nouns Avatar"
             className="w-20 h-20 cursor-pointer"
-            onClick={generateNounsAvatar} // Generate a new random avatar on click
+            onClick={generateNounsAvatar}
             onError={() => console.error("Error loading avatar")}
           />
 
