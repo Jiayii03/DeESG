@@ -6,18 +6,24 @@ import { Progress } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { useRouter } from "next/navigation";
 
-export default function App() {
+export default function CompanyDetails({ selectedCompany }) {
+  if (!selectedCompany) {
+    return <p>Select a company to view its details.</p>;
+  }
+
+  const router = useRouter();
+
   return (
     <div className="flex flex-col border-e-2 p-3">
       <div className="flex justify-start items-center gap-3">
         <div>
-          <Avatar src="" size="lg" radius="sm" />
+          <Avatar src={selectedCompany.avatarUrl} size="lg" radius="sm" />
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-lg font-semibold">
-            <span>CapitalX</span>
+            <span>{selectedCompany.company_name}</span>
           </div>
           <div className="text-sm font-light text-gray-400">
             <span>ESG Score</span>
@@ -25,18 +31,15 @@ export default function App() {
         </div>
         <div>
           <Chip radius="sm" size="sm" startContent={<span>#</span>}>
-            1
+            {selectedCompany.gtk}
           </Chip>
         </div>
       </div>
 
       <div className="flex mt-3 items-center p-3">
-        <span className="text-4xl me-3 font-semibold">60.5</span>
-        <i
-          className="bi bi-caret-up-fill text-green-300 me-1"
-          style={{ fontSize: "1.5rem" }}
-        ></i>
-        <span className="text-lg text-green-300">0.2</span>
+        <span className="text-4xl me-3 font-semibold">
+          {selectedCompany.esg_score}
+        </span>
         <Info size={15} className="text-gray-300 ms-2" />
       </div>
 
@@ -48,11 +51,9 @@ export default function App() {
             base: "max-w-md",
             track: "drop-shadow-md border border-default",
             indicator: "bg-gradient-to-r from-pink-500 to-yellow-500",
-            label: "tracking-wider font-medium text-default-600",
-            value: "text-foreground/60",
           }}
           label="Low Risk"
-          value={65}
+          value={parseFloat(selectedCompany.esg_score)}
         />
       </div>
 
@@ -61,9 +62,24 @@ export default function App() {
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button endContent={<MoveUpRight size={15} />}>Company</Button>
-        <Button endContent={<MoveUpRight size={15} />}>Device</Button>
-        <Button endContent={<MoveUpRight size={15} />}>Forum</Button>
+        <Button
+          endContent={<MoveUpRight size={15} />}
+          onPress={() => router.push("/company")}
+        >
+          Company
+        </Button>
+        <Button
+          endContent={<MoveUpRight size={15} />}
+          onPress={() => router.push("/company/devices")}
+        >
+          Device
+        </Button>
+        <Button
+          endContent={<MoveUpRight size={15} />}
+          onPress={() => router.push("/company/forum")}
+        >
+          Forum
+        </Button>
       </div>
 
       <div className="flex justify-start gap-3 p-3">

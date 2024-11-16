@@ -2,22 +2,24 @@
 
 import CompanyTable from "./CompanyTable";
 import CompanyDetails from "./CompanyDetails";
+import { useState } from "react";
 import { Button } from "@nextui-org/react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
-import { useConnectModal } from "@rainbow-me/rainbowkit"; 
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 const Explore = () => {
   const router = useRouter();
   const { isConnected } = useAccount();
-  const { openConnectModal } = useConnectModal(); 
+  const { openConnectModal } = useConnectModal();
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
   const handleAddCompanyClick = () => {
     if (isConnected) {
       router.push("/add-company");
     } else {
-      openConnectModal(); 
+      openConnectModal();
     }
   };
 
@@ -25,7 +27,7 @@ const Explore = () => {
     <main>
       <div className="flex p-8 gap-3">
         <div className="basis-4/12">
-          <CompanyDetails />
+          <CompanyDetails selectedCompany={selectedCompany} />
         </div>
 
         <div className="basis-8/12">
@@ -51,7 +53,7 @@ const Explore = () => {
                   <span className="font-sm">Search...</span>
                 </Button>
               </div>
-              <CompanyTable />
+              <CompanyTable onRowClick={setSelectedCompany} />
             </div>
           </div>
         </div>
