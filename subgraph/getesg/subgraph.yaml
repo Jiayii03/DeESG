@@ -1,0 +1,35 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: getESG
+    network: sepolia
+    source:
+      address: "0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0"
+      abi: getESG
+      startBlock: 7090207
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AggregatedDataStored
+        - CompanyWalletUpdated
+        - OwnershipTransferred
+        - TokensRewarded
+      abis:
+        - name: getESG
+          file: ./abis/getESG.json
+      eventHandlers:
+        - event: AggregatedDataStored(uint256,string,string,uint256)
+          handler: handleAggregatedDataStored
+        - event: CompanyWalletUpdated(indexed address)
+          handler: handleCompanyWalletUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokensRewarded(string,uint256)
+          handler: handleTokensRewarded
+      file: ./src/get-esg.ts

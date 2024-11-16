@@ -1,0 +1,36 @@
+type AggregatedDataStored @entity(immutable: true) {
+  id: Bytes!
+  aggregatedCluster: BigInt! # uint256
+  aggregatedESGScore: String! # string
+  mostCommonRiskCategory: String! # string
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CompanyWalletUpdated @entity(immutable: true) {
+  id: Bytes!
+  newCompanyWallet: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TokensRewarded @entity(immutable: true) {
+  id: Bytes!
+  aggregatedESGScore: String! # string
+  rewardAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
