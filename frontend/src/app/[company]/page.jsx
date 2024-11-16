@@ -1,42 +1,37 @@
 "use client";
 
-import React from 'react';
-import { usePathname } from 'next/navigation';
-import CompanyDetails from './CompanyDetails';
-import DetailsTable from './DetailsTable';  
+import Profile from "./profile/page";
 import { Button } from "@nextui-org/react";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Divider } from "@nextui-org/react";
+import DevicesTable from "./profile/DevicesTable";
 
-const CompanyPage = () => {
-  const pathname = usePathname(); // Get the current path
-  const company = pathname.split('/')[1]; // Extract the company name from the path
+const Explore = () => {
+  const router = useRouter();
 
   return (
-    <main className='min-h-screen[90vh]'>
-      {/* Main Content Section */}
+    <main>
       <div className="flex p-8 gap-3">
-        {/* Sidebar Section */}
         <div className="basis-4/12">
-          <CompanyDetails companyName={company}/>
+          <Profile />
         </div>
 
-        {/* Main Content Section */}
         <div className="basis-8/12">
           <div className="flex flex-col justify-start">
-            <div>
-              <div className="flex mb-3 justify-end">
-                <Button
-                  size="md"
-                  radius="full"
-                  startContent={<Search size={16} color="gray" />} 
-                  endContent={<span className="text-gray-400 ms-8">Ctrl K</span>}
-                  className="text-gray-400 bg-gray-100"
-                >
-                  <span className="font-medium">Search...</span>
-                </Button>
+            <div className="flex flex-col justify-start gap-10 p-10">
+              <div className="flex justify-between">
+                <h1 className="text-2xl">ESG Score</h1>
+                <Button>Evaluate</Button>
               </div>
-              {/* Evaluate esg score and add devices */}
-                
+            </div>
+            <Divider />
+            <div className="flex flex-col justify-start gap-10 p-10">
+              <div className="flex justify-between">
+                <h1 className="text-2xl">Devices</h1>
+                <Button>Add</Button>
+              </div>
+              <DevicesTable />
             </div>
           </div>
         </div>
@@ -45,4 +40,4 @@ const CompanyPage = () => {
   );
 };
 
-export default CompanyPage;
+export default Explore;

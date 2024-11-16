@@ -62,15 +62,21 @@ export default function App() {
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button endContent={<MoveUpRight size={15}/>}>Company</Button>
-        <Button endContent={<MoveUpRight size={15}/>}>Device</Button>
-        <Button endContent={<MoveUpRight size={15}/>}>Forum</Button>
+        <Button endContent={<MoveUpRight size={15} />}>Company</Button>
+        <Button endContent={<MoveUpRight size={15} />}>Device</Button>
+        <Button endContent={<MoveUpRight size={15} />}>Forum</Button>
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Twitter</Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Website</Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Google</Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
+          Twitter
+        </Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
+          Website
+        </Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
+          Google
+        </Button>
       </div>
     </div>
   );

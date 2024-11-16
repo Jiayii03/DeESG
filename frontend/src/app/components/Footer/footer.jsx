@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer
       className={`bg-white h-20 w-screen ${
-        isSticky ? "absolute bottom-0" : "relative"
+        isSticky ? "absolute bottom-0" : "absolute bottom-0 w-screen"
       }`}
     >
       <div className="border-t border-gray-200" />
