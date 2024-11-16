@@ -10,18 +10,18 @@ import {
   TableCell,
   Spinner,
 } from "@nextui-org/react";
-import companyData from "./companyData.json"; // Adjust the path to your JSON file
+import { Avatar } from "@nextui-org/react";
+import companyData from "./companyData.json"; 
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    // Simulate async loading of dummy data
     const loadData = async () => {
       setIsLoading(true);
       try {
-        setList(companyData); // Use the imported JSON data
+        setList(companyData); 
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
@@ -63,7 +63,20 @@ export default function App() {
         {(item) => (
           <TableRow key={item.company_name}>
             {(columnKey) => (
-              <TableCell>{item[columnKey]}</TableCell>
+              <TableCell>
+                {columnKey === "company_name" ? (
+                  <div className="flex items-center gap-3">
+                    <Avatar
+                      src={item.avatar_url} 
+                      name={item.company_name}
+                      size="sm"
+                    />
+                    <span>{item.company_name}</span>
+                  </div>
+                ) : (
+                  item[columnKey]
+                )}
+              </TableCell>
             )}
           </TableRow>
         )}

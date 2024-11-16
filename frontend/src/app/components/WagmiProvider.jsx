@@ -1,10 +1,15 @@
 "use client"; // Ensure this runs only on the client
 
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultConfig, RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
+import {
+  getDefaultConfig,
+  RainbowKitProvider,
+  darkTheme,
+  lightTheme,
+} from "@rainbow-me/rainbowkit";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { mainnet, polygonAmoy, scrollSepolia, zircuitTestnet, lineaTestnet } from "wagmi/chains";
+import { sepolia } from "wagmi/chains"; // Import Ethereum Sepolia Testnet
 
 // Initialize the QueryClient for React Query
 const queryClient = new QueryClient();
@@ -12,8 +17,8 @@ const queryClient = new QueryClient();
 // RainbowKit and Wagmi configuration
 const config = getDefaultConfig({
   appName: "DeESG",
-  projectId: "YOUR_PROJECT_ID", 
-  chains: [mainnet, polygonAmoy, scrollSepolia, zircuitTestnet,lineaTestnet], // Use testnets for Scroll, Linea, and Zircuit
+  projectId: "YOUR_PROJECT_ID",
+  chains: [sepolia], // Only Sepolia Testnet
   ssr: true, // Required for SSR apps
 });
 
@@ -29,6 +34,8 @@ export default function Providers({ children }) {
             fontStack: "rounded", // Use system font or specify a custom font here
             borderRadius: "large", // Customize the border radius
           })}
+          initialChain={sepolia} // Ensure Sepolia is the default chain
+          modalSize="compact" // Optional: Adjust the size of the RainbowKit modal
         >
           {children}
         </RainbowKitProvider>

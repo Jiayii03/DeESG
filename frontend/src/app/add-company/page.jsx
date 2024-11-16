@@ -9,9 +9,11 @@ import {
 } from "@nextui-org/react";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAccount } from "wagmi"; // Import wagmi's useAccount hook
 
 function Page() {
   const router = useRouter();
+  const { address, isConnected } = useAccount(); // Get wallet address and connection status
 
   const companySizes = [
     { value: "1-10", label: "1-10 employees" },
@@ -46,6 +48,11 @@ function Page() {
   };
 
   const handleSubmit = () => {
+    if (!isConnected) {
+      alert("Please connect your wallet before submitting.");
+      return; // Prevent navigation if wallet is not connected
+    }
+
     const newErrors = {};
     if (!form.companyName) newErrors.companyName = "Company name is required.";
     if (!form.twitterHandle)
@@ -77,6 +84,14 @@ function Page() {
           </Button>
           <h1 className="text-5xl">Get Started</h1>
           <h2 className="text-lg text-gray-400">Add your company</h2>
+        </div>
+
+        <div className="flex items-center justify-center mt-8">
+          {isConnected ? (
+            <span>{address}</span> // Display connected wallet address
+          ) : (
+            <span className="text-red-500">Please connect your wallet.</span>
+          )}
         </div>
 
         <div className="flex justify-between mt-10">
@@ -144,7 +159,11 @@ function Page() {
         </div>
 
         <div className="flex justify-end items-center mt-10">
-          <Button endContent={<MoveRight size={16} />} onPress={handleSubmit}>
+          <Button
+            disabled={!isConnected} // Disable the button if wallet is not connected
+            endContent={<MoveRight size={16} />}
+            onPress={handleSubmit}
+          >
             <span>Submit</span>
           </Button>
         </div>
