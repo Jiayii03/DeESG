@@ -60,7 +60,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-6xl font-bold text-center mb-0 font-vcr"
+        className="text-7xl font-bold text-center mb-0 font-vcr"
       >
         Problems with Traditional ESG
       </motion.h2>
