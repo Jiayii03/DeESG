@@ -5,8 +5,11 @@ import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { MoveLeft, MoveRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function page() {
+  const router = useRouter();
+
   const companySizes = [
     { value: "1-10", label: "1-10 employees" },
     { value: "11-50", label: "11-50 employees" },
@@ -39,7 +42,11 @@ function page() {
       <div className="basis-3/12"></div>
       <div className="basis-6/12">
         <div className="flex flex-col items-start gap-2">
-          <Button className="bg-transparent mb-5" startContent={<MoveLeft size={16} />}>
+          <Button
+            className="bg-transparent mb-5"
+            startContent={<MoveLeft size={16} />}
+            onPress={() => router.push("/explore")}
+          >
             <span>Back</span>
           </Button>
           <h1 className="text-5xl">Get Started</h1>
@@ -56,58 +63,38 @@ function page() {
           />
           <Input
             isRequired
-            type="email"
-            label="Email"
+            type="text"
+            label="Twitter Handle"
             variant="underlined"
             className="max-w-xs"
           />
         </div>
 
-        <div className="flex justify-between mt-10 gap-4">
-          <div className="flex gap-10">
-            <Autocomplete
-              label="Select company size"
-              className="max-w-xs"
-              variant="underlined"
-              isRequired
-            >
-              {companySizes.map((size) => (
-                <AutocompleteItem key={size.value} value={size.value}>
-                  {size.label}
-                </AutocompleteItem>
-              ))}
-            </Autocomplete>
+        <div className="flex justify-between mt-10">
+          <Input
+            isRequired
+            type="text"
+            label="Company Website"
+            variant="underlined"
+            className="max-w-xs"
+          />
 
-            <Autocomplete
-              label="Select region"
-              className="max-w-xs"
-              variant="underlined"
-              isRequired
-            >
-              {regions.map((region) => (
-                <AutocompleteItem key={region.value} value={region.value}>
-                  {region.label}
-                </AutocompleteItem>
-              ))}
-            </Autocomplete>
-
-            <Autocomplete
-              label="Select sector"
-              className="max-w-xs"
-              variant="underlined"
-              isRequired
-            >
-              {sectors.map((sector) => (
-                <AutocompleteItem key={sector.value} value={sector.value}>
-                  {sector.label}
-                </AutocompleteItem>
-              ))}
-            </Autocomplete>
-          </div>
+          <Autocomplete
+            label="Select sector"
+            className="max-w-xs"
+            variant="underlined"
+            isRequired
+          >
+            {sectors.map((sector) => (
+              <AutocompleteItem key={sector.value} value={sector.value}>
+                {sector.label}
+              </AutocompleteItem>
+            ))}
+          </Autocomplete>
         </div>
 
         <div className="flex justify-end items-center mt-10">
-          <Button endContent={<MoveRight size={16}/>}>
+          <Button endContent={<MoveRight size={16} />} onPress={() => router.push("/company")}>
             <span>Submit</span>
           </Button>
         </div>

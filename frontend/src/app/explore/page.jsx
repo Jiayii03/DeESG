@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import CompanyTable from "./CompanyTable";
 import CompanyDetails from "./CompanyDetails";
