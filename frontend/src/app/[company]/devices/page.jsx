@@ -8,7 +8,7 @@ import DeviceData from "./DeviceData";
 
 const Home = () => {
   return (
-    <main className="flex p-8 gap-3">
+    <main className="flex p-8 pt-0 gap-3">
       <div className="basis-4/12">
         <DeviceCard />
       </div>
