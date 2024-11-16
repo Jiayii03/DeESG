@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Head from "next/head";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/footer";
 import Providers from "./components/WagmiProvider";
 import { NextUIProvider } from "@nextui-org/react";
 
@@ -36,7 +37,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/app_logo.png" />
       </Head>
       <body
-        className={`${suisseIntl.variable} antialiased bg-[#f6f6f6] min-h-[100vh]`}
+        className={`${suisseIntl.variable} antialiased bg-[#f6f6f6] min-h-[100vh] flex flex-col`}
       >
         <NextUIProvider>
           <Providers>
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
             {children}
           </Providers>
         </NextUIProvider>
+        <Footer />
       </body>
     </html>
   );
