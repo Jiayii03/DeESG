@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "getESG": {
+      "address": "0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0",
+      "startBlock": 7090207
+    }
+  }
+}

@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 import CompanyDetails from "../abis/CompanyDetails.json";
-const CONTRACT_ADDRESS = "0x101535944e89e03734d7f09A6cbF510A95139E6D";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_COMPANY_DETAILS_CONTRACT_ADDRESS;
 
 function Page() {
   const router = useRouter();

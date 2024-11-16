@@ -1,0 +1,14 @@
+type DataStored @entity(immutable: true) {
+  id: Bytes!
+  CO2_emissions: BigInt! # uint256
+  methane_emissions: BigInt! # uint256
+  NOx_emissions: BigInt! # uint256
+  PM_emissions: BigInt! # uint256
+  humidity: BigInt! # uint256
+  temperature: BigInt! # uint256
+  walletAddress: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

@@ -13,9 +13,10 @@ import {
 import { Avatar } from "@nextui-org/react";
 import companyData from "./companyData.json";
 
-export default function App() {
+export default function CompanyTable({ onRowClick }) {
   const [isLoading, setIsLoading] = useState(true);
   const [list, setList] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null); // State to track selected row
 
   useEffect(() => {
     const loadData = async () => {
@@ -31,6 +32,19 @@ export default function App() {
 
     loadData();
   }, []);
+
+  // Set the first row as selected by default after data is loaded
+  useEffect(() => {
+    if (list.length > 0) {
+      setSelectedRow(list[0]);
+      onRowClick(list[0]); // Trigger the callback with the first row data
+    }
+  }, [list, onRowClick]);
+
+  const handleRowClick = (item) => {
+    setSelectedRow(item);
+    onRowClick(item); // Notify parent component
+  };
 
   return (
     <Table
@@ -57,7 +71,6 @@ export default function App() {
       </TableHeader>
       <TableBody
         items={list}
-        s
         isLoading={isLoading}
         loadingContent={<Spinner label="Loading..." />}
       >
@@ -65,8 +78,21 @@ export default function App() {
           const index = list.findIndex(
             (listItem) => listItem.company_name === item.company_name
           );
+          const isSelected =
+            selectedRow && selectedRow.company_name === item.company_name;
           return (
-            <TableRow key={item.company_name}>
+            <TableRow
+              key={item.company_name}
+              onClick={() =>
+                handleRowClick({
+                  ...item,
+                  avatarUrl: `companies_nouns/company${(index % 10) + 1}.svg`,
+                })
+              }
+              className={`cursor-pointer hover:bg-gray-100 ${
+                isSelected ? "bg-gray-200" : ""
+              }`}
+            >
               {(columnKey) => (
                 <TableCell>
                   {columnKey === "company_name" ? (
@@ -77,6 +103,7 @@ export default function App() {
                         size="sm"
                         fallback={item.company_name.slice(0, 3).toUpperCase()}
                       />
+
                       <span>{item.company_name}</span>
                     </div>
                   ) : (
