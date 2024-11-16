@@ -1,7 +1,7 @@
 type = "directrequest"
 schemaVersion = 1
-name = "Fetch and Store Aggregated ESG Data From AI"
-externalJobID = "8c08e276-ff4d-43ab-bc5e-1ab07d9f5556"
+name = "Fetch and Store Aggregated ESG Data From AI Sepolia"
+externalJobID = "1c08e276-ff4d-43ab-bc5e-1ab07d9f5556"
 forwardingAllowed = false
 maxTaskDuration = "15m0s"
 contractAddress = "0xb3DCb1123C23432c9a93632D808c3Ddd03069a88"
@@ -37,7 +37,7 @@ observationSource = """
     ]
 
     call_contract [type=ethtx
-        to="0x4861A975A8F535414672Ecb883B546E035564445"
+        to="0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0"
         data="$(encode_data)"
         evmChainID="11155111"
         gasLimit="800000"
