@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
       <Head>
         <link rel="icon" href="/app_logo.png" />
       </Head>
-      <body className={`${suisseIntl.variable} antialiased` }>
+      <body className={`${suisseIntl.variable} antialiased bg-[#f6f6f6] min-h-[100vh]` }>
         <NextUIProvider>
           <Providers>
             <Header />
