@@ -1,0 +1,326 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "CO2_emissions",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "methane_emissions",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "NOx_emissions",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "PM_emissions",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "humidity",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "temperature",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "walletAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DataStored",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "dataEntries",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "CO2_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "methane_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "NOx_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "PM_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "humidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "temperature",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "walletAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_walletAddress",
+						"type": "address"
+					}
+				],
+				"name": "getDataByWallet",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getDataEntries",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "CO2_emissions",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "methane_emissions",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "NOx_emissions",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "PM_emissions",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "humidity",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "temperature",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "walletAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct DataStorage.DataEntry[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getDataEntry",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_CO2_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_methane_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_NOx_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_PM_emissions",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_humidity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_temperature",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_walletAddress",
+						"type": "address"
+					}
+				],
+				"name": "storeData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETHBangkok/GreenToken/DataStorage.sol": "DataStorage"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETHBangkok/GreenToken/DataStorage.sol": {
+			"keccak256": "0x50e604133049e1b67db66317cb870905072f6f0d22956af94986f2331918c4a4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f121153deaf35b42c0baf4c844ebdd1a333a73773b1980b8a4fe5fbc3b7c59c9",
+				"dweb:/ipfs/QmcymKX5cyDXXrCjakhT5EhqVWns7a4ixoPSDTzANU9TWY"
+			]
+		}
+	},
+	"version": 1
+}
