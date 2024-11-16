@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button2";
-import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (

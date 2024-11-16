@@ -1,12 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
-import styles from "../styles/style.module.scss";
-import { Check } from "lucide-react";
-import { problems } from "../../../../../../../GreenesisLandingPage/GreenesisLandingPage/src/app/data";
+import styles from "./page.module.scss";
 import Card from "./Cards";
+import { useRef } from "react";
+import { Check } from "lucide-react";
+
 
 const AnimatedText = ({ text, progress, delay = 0 }) => {
   const words = text.split(" ");
@@ -97,7 +96,7 @@ export default function InfoSection() {
   });
 
   return (
-    <section className="pt-32 pb-20 bg-white">
+    <section className="pt-32 pb-20">
       <div ref={container} className="max-w-[90rem] mx-auto px-4 mb-32">
         <div className="text-center mb-32">
           <h1 className="text-[8rem] font-bold mb-12 leading-tight tracking-tight">

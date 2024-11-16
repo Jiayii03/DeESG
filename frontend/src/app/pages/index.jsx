@@ -2,7 +2,7 @@
 import LogoSection from "../components/logoSection";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
 import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 export default function Home() {
   const container = useRef(null);

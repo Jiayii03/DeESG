@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import SloganSection from "./components/LandingPage/components/SloganSection";
 import CardSection from "./components/LandingPage/components/CardSection";
 import FAQSection from "./components/LandingPage/components/FAQSection";
-import Lenis from "@studio-freight/lenis";
+import InfoSection from "./components/LandingPage/components/infoSection";
 
 export default function Home() {
   const { scrollYProgress } = useScroll({
@@ -145,6 +145,8 @@ export default function Home() {
         </motion.section>
 
         <SloganSection />
+
+        <InfoSection />
 
         <CardSection />
 

@@ -4,7 +4,7 @@ import styles from "./page.module.scss";
 import Card from "./Cards";
 import { motion, useScroll } from "framer-motion";
 import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 export default function Home() {
   const problems = [
@@ -14,7 +14,6 @@ export default function Home() {
       description:
         "Traditional ESG evaluations often suffer from subjective biases and inconsistent methodologies, leading to unreliable assessments.",
       descriptionFont: "var(--font-space-mono)", // Add font specification for description
-      src: "bias.jpg",
       link: "https://example.com/biased-evaluations",
       color: "#2E7D32",
     },
@@ -24,7 +23,6 @@ export default function Home() {
       description:
         "Current ESG reporting lacks standardization and verification, making it difficult to trust the accuracy of environmental impact data.",
       descriptionFont: "var(--font-space-mono)",
-      src: "data.jpg",
       link: "https://example.com/data-reliability",
       color: "#66BB6A",
     },
@@ -34,7 +32,6 @@ export default function Home() {
       description:
         "Companies have limited motivation to maintain high ESG standards due to insufficient rewards for sustainable practices.",
       descriptionFont: "var(--font-space-mono)",
-      src: "incentive.jpg",
       link: "https://example.com/lack-of-incentives",
       color: "#81C784",
     },
