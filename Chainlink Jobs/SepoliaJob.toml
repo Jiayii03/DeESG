@@ -4,7 +4,7 @@ name = "Fetch and Store Emission Data Sepolia"
 externalJobID = "3c08e276-ff4d-43ab-bc5e-1ab07d9f5555"
 forwardingAllowed = false
 maxTaskDuration = "15m0s"
-contractAddress = "0xE7874B2C5743E62F22b47DDA94596aEbe8aCbC31"
+contractAddress = "0xb3DCb1123C23432c9a93632D808c3Ddd03069a88"
 evmChainID = "11155111"
 minIncomingConfirmations = 1
 minContractPaymentLinkJuels = "100000000000000"
@@ -12,7 +12,7 @@ observationSource = """
    fetch_data [type=http
         method="POST"
         url="http://84.247.151.195:8081/"
-        requestData="{\\"id\\":\\"test1234\\"}"
+        requestData="{\\"id\\":\\"job3\\"}"
         allowunrestrictednetworkaccess="true"
     ]
 
@@ -52,7 +52,7 @@ observationSource = """
     ]
 
     call_contract [type=ethtx
-        to="0x8bBD2C66Ea415de7cdA73C481520e4f1cb40c365"
+        to="0x9D127915418dca2B3397De1f536e397462b6DC39"
         data="$(encode_data)"
         evmChainID="11155111"
         gasLimit="500000"

@@ -4,7 +4,7 @@ name = "Fetch and Store Aggregated ESG Data From AI"
 externalJobID = "8c08e276-ff4d-43ab-bc5e-1ab07d9f5556"
 forwardingAllowed = false
 maxTaskDuration = "15m0s"
-contractAddress = "0xE7874B2C5743E62F22b47DDA94596aEbe8aCbC31"
+contractAddress = "0xb3DCb1123C23432c9a93632D808c3Ddd03069a88"
 evmChainID = "11155111"
 minIncomingConfirmations = 1
 minContractPaymentLinkJuels = "100000000000000"
@@ -12,7 +12,7 @@ observationSource = """
     fetch_data [type=http
         method="POST"
         url="http://84.247.151.195:8082/"
-        requestData="{\\"id\\":\\"test-job\\"}"
+        requestData="{\\"id\\":\\"job6\\"}"
         allowunrestrictednetworkaccess="true"
     ]
 
