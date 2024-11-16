@@ -18,7 +18,7 @@ const Explore = () => {
                 <Button
                   size="md"
                   radius="full"
-                  startContent={<Search size={16} color="gray" />} 
+                  startContent={<Search size={16} color="gray" />}
                   endContent={<span className="text-gray-400 ms-8">Ctrl K</span>}
                   className="text-gray-400 bg-gray-100"
                 >

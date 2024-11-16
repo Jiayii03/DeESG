@@ -1,8 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const Footer = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const checkHeight = () => {
+      // Compare body height with viewport height
+      setIsSticky(document.body.scrollHeight <= window.innerHeight);
+    };
+
+    // Check height on mount and resize
+    checkHeight();
+    window.addEventListener("resize", checkHeight);
+
+    return () => {
+      window.removeEventListener("resize", checkHeight);
+    };
+  }, []);
+
   return (
-    <footer className="bg-white h-20 relative">
+    <footer
+      className={`bg-white h-20 w-screen ${
+        isSticky ? "absolute bottom-0" : "relative"
+      }`}
+    >
       <div className="border-t border-gray-200" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
