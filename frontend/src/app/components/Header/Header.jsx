@@ -16,9 +16,9 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center cursor-pointer">
               <Image
-                src="/greenesis_logo.png" 
+                src="/greenesis_logo.png"
                 alt="Greenesis Logo"
                 width={150}
                 height={40}
@@ -58,10 +58,10 @@ const Header = () => {
 
             <div>
               <Link
-                href="/try-now"
+                href="/explore"
                 className="bg-[#62825D] text-white px-6 py-2.5 rounded-full hover:bg-[#3D5300] transition-colors"
               >
-                Start Now
+                Explore
               </Link>
             </div>
           </div>
@@ -77,7 +77,13 @@ const Header = () => {
           <div>
             <div className="flex flex-shrink-0 flex-row items-center gap-1 py-2">
               <div className="flex ml-3">
-                <img src="/app_logo.png" alt="App Logo" className="h-12 w-12" />
+                <Link href="/">
+                  <img
+                    src="/app_logo.png"
+                    alt="App Logo"
+                    className="h-12 w-12 cursor-pointer"
+                  />
+                </Link>
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="h-full flex flex-col pt-2 md:flex-row md:justify-between justify-center items-center">
           <div className="text-center md:text-left pb-2 md:pb-0">
             <p className="text-sm text-muted-foreground">
-              &copy; <span className="font-bold">Greenesis </span>
+              &copy; <span className="font-bold">DeESG </span>
               {new Date().getFullYear()} All rights reserved
             </p>
           </div>

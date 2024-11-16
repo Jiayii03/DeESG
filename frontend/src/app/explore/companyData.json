@@ -1,0 +1,72 @@
+[
+    {
+        "company_name": "GreenCore Energy",
+        "esg_score": 98,
+        "number_of_devices": 99,
+        "number_of_employees": 279,
+        "gtk": 39
+    },
+    {
+        "company_name": "InnovEdge",
+        "esg_score": 31,
+        "number_of_devices": 122,
+        "gtk": 9,        
+        "number_of_employees": 835
+    },
+    {
+        "company_name": "CodeFlow Solutions",
+        "esg_score": 22,
+        "number_of_devices": 171,
+        "gtk": 3,        
+        "number_of_employees": 409
+    },
+    {
+        "company_name": "HealthVantage",
+        "esg_score": 17,
+        "number_of_devices": 56,
+        "gtk": 46,
+        "number_of_employees": 280
+    },
+    {
+        "company_name": "FinEdge",
+        "esg_score": 9,
+        "number_of_devices": 156,
+        "gtk": 32,
+        "number_of_employees": 585
+    },
+    {
+        "company_name": "MoneyBridge",
+        "esg_score": 75,
+        "number_of_devices": 175,
+        "gtk": 47,
+        "number_of_employees": 645
+    },
+    {
+        "company_name": "ShopSphere",
+        "esg_score": 80,
+        "number_of_devices": 168,
+        "gtk": 32,
+        "number_of_employees": 390
+    },
+    {
+        "company_name": "QuickMart",
+        "esg_score": 40,
+        "number_of_devices": 104,
+        "gtk": 46,
+        "number_of_employees": 190
+    },
+    {
+        "company_name": "AutoNext",
+        "esg_score": 70,
+        "number_of_devices": 153,
+        "gtk": 38,
+        "number_of_employees": 787
+    },
+    {
+        "company_name": "VeloTech Motors",
+        "esg_score": 37,
+        "number_of_devices": 156,
+        "gtk": 11,
+        "number_of_employees": 18
+    }
+]
