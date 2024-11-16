@@ -10,12 +10,12 @@ export default function Home() {
   const problems = [
     {
       title: "Biased Evaluations",
-      titleFont: "var(--font-instrument-sans)", // Add font specification for title
+      titleFont: "var(--font-vcr)",
       description:
         "Traditional ESG evaluations often suffer from subjective biases and inconsistent methodologies, leading to unreliable assessments.",
-      descriptionFont: "var(--font-space-mono)", // Add font specification for description
+      descriptionFont: "var(--font-space-mono)",
       link: "https://example.com/biased-evaluations",
-      color: "#2E7D32",
+      color: "#F6F7C4",
     },
     {
       title: "Data Reliability",
@@ -24,7 +24,7 @@ export default function Home() {
         "Current ESG reporting lacks standardization and verification, making it difficult to trust the accuracy of environmental impact data.",
       descriptionFont: "var(--font-space-mono)",
       link: "https://example.com/data-reliability",
-      color: "#66BB6A",
+      color: "#A1EEBD",
     },
     {
       title: "Lack of Incentives",
@@ -33,7 +33,7 @@ export default function Home() {
         "Companies have limited motivation to maintain high ESG standards due to insufficient rewards for sustainable practices.",
       descriptionFont: "var(--font-space-mono)",
       link: "https://example.com/lack-of-incentives",
-      color: "#81C784",
+      color: "#7BD3EA",
     },
   ];
 
@@ -60,7 +60,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-6xl font-bold text-center mb-0"
+        className="text-6xl font-bold text-center mb-0 font-vcr"
       >
         Problems with Traditional ESG
       </motion.h2>

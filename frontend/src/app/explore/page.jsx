@@ -1,13 +1,25 @@
-'use client';
+"use client";
 
 import CompanyTable from "./CompanyTable";
 import CompanyDetails from "./CompanyDetails";
 import { Button } from "@nextui-org/react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAccount } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit"; // Correct hook for opening modal
 
 const Explore = () => {
   const router = useRouter();
+  const { isConnected } = useAccount();
+  const { openConnectModal } = useConnectModal(); // Correct hook for modal
+
+  const handleAddCompanyClick = () => {
+    if (isConnected) {
+      router.push("/add-company");
+    } else {
+      openConnectModal(); // Trigger RainbowKit modal for wallet connection
+    }
+  };
 
   return (
     <main>
@@ -20,7 +32,11 @@ const Explore = () => {
           <div className="flex flex-col justify-start">
             <div>
               <div className="flex mb-3 justify-between items-center">
-                <Button size="sm" onPress={() => router.push("/add-company")}>
+                <Button
+                  size="sm"
+                  onPress={handleAddCompanyClick}
+                  className="py-4 px-6"
+                >
                   <span>Add your company</span>
                 </Button>
                 <Button
@@ -28,11 +44,11 @@ const Explore = () => {
                   radius="full"
                   startContent={<Search size={16} color="gray" />}
                   endContent={
-                    <span className="text-gray-400 ms-8">Ctrl K</span>
+                    <span className="text-gray-400 ms-8 text-sm">Ctrl K</span>
                   }
-                  className="text-gray-400 bg-gray-200"
+                  className="text-gray-400 bg-gray-200 px-7 py-2"
                 >
-                  <span className="font-medium">Search...</span>
+                  <span className="font-sm">Search...</span>
                 </Button>
               </div>
               <CompanyTable />

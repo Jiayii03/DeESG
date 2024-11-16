@@ -6,6 +6,7 @@ import SloganSection from "./components/LandingPage/components/SloganSection";
 import CardSection from "./components/LandingPage/components/CardSection";
 import FAQSection from "./components/LandingPage/components/FAQSection";
 import InfoSection from "./components/LandingPage/components/infoSection";
+import { useState } from "react";
 
 export default function Home() {
   const { scrollYProgress } = useScroll({
@@ -16,27 +17,136 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 1, 1]);
   const y = useTransform(scrollYProgress, [0, 0.3, 1], [100, 0, 0]);
 
+  // State for Nouns visibility
+  const [showNouns, setShowNouns] = useState(false);
+
   return (
-    <main>
+    <main className={showNouns ? "font-vcr-osd-mono" : ""}>
       <div className="text-center">
+        <button
+          onClick={() => {
+            setShowNouns(!showNouns);
+            document.body.style.fontFamily = !showNouns
+              ? "var(--font-vcr)"
+              : "";
+          }}
+          className="fixed bottom-4 right-32 z-50"
+        >
+          <Image
+            src="/Nouns/nounsdaoButton.jpg"
+            alt={showNouns ? "Hide Nouns" : "Show Nouns"}
+            width={60}
+            height={60}
+            className="rounded-full hover:opacity-90 transition-opacity object-cover"
+          />
+        </button>
+
         <section>
           <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen mt-12 pt-32 py-12 mb-10">
             <div className="flex flex-col gap-8 row-start-2 items-center text-center max-w-6xl">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-space-mono tracking-tight ">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight font-instrument-sans">
                 <div className="h-[5vh]" />
                 <span className="text-green-600">Explore</span> the Future
                 <br />
                 of ESG Ratings
               </h1>
 
-              <div className="relative h-[600px] w-[600px]">
-                <Image
-                  src="/raspberryPI.png"
-                  alt="Sustainable Future"
-                  layout="fill"
-                  objectFit="contain"
-                  className="rounded-lg animate-float"
-                />
+              <div className="relative w-full">
+                {/* Wrap all Nouns divs with conditional rendering */}
+                {showNouns && (
+                  <>
+                    <div className="absolute top-[-30px] left-[-200px] h-[120px] w-[120px] z-10">
+                      <Image
+                        src="/Nouns/nouns1.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute top-60 right-[-50px] h-[100px] w-[100px] z-10">
+                      <Image
+                        src="/Nouns/nouns2.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute bottom-40 left-[-80px] h-[110px] w-[110px] z-10">
+                      <Image
+                        src="/Nouns/nouns3.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute top-[-40px] right-[-60px] h-[90px] w-[90px] z-10">
+                      <Image
+                        src="/Nouns/nouns4.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute bottom-[-20px] right-[-20px] h-[115px] w-[115px] z-10">
+                      <Image
+                        src="/Nouns/nouns5.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute top-[150px] left-[-170px] h-[95px] w-[95px] z-10">
+                      <Image
+                        src="/Nouns/nouns6.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute bottom-[-40px] left-[-180px] h-[105px] w-[105px] z-10">
+                      <Image
+                        src="/Nouns/nouns7.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+
+                    <div className="absolute top-[120px] right-[-150px] h-[98px] w-[98px] z-10">
+                      <Image
+                        src="/Nouns/nouns8.png"
+                        alt="Nouns"
+                        layout="fill"
+                        objectFit="contain"
+                        className="rounded-lg animate-float-slow animate-rock"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* Center raspberry PI image */}
+                <div className="relative h-[600px] w-[600px] mx-auto">
+                  <Image
+                    src="/raspberryPI.png"
+                    alt="Sustainable Future"
+                    layout="fill"
+                    objectFit="contain"
+                    className="rounded-lg animate-float"
+                  />
+                </div>
               </div>
             </div>
           </div>

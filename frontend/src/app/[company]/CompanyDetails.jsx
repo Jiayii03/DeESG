@@ -8,20 +8,24 @@ import { MoveUpRight } from "lucide-react";
 import { SquareArrowOutUpRight } from "lucide-react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export default function App() {
+export default function App({companyName}) {
+
+  const toTitleCase = (str) =>
+    str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
   return (
     <div className="flex flex-col border-e-2 p-3">
       <div className="flex justify-start items-center gap-3">
         <div>
-          <Avatar
-            src=""
-            size="lg"
-            radius="sm"
-          />
+          <Avatar size="lg" name="test"></Avatar>
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-lg font-semibold">
-            <span>CapitalX</span>
+            <span>{toTitleCase(companyName)}</span>
           </div>
           <div className="text-sm font-light text-gray-400">
             <span>ESG Score</span>
@@ -35,7 +39,7 @@ export default function App() {
       </div>
 
       <div className="flex mt-3 items-center p-3">
-        <span className="text-4xl me-3 font-semibold">60.5</span>
+        <span className="text-4xl me-3 font-semibold">5.0</span>
         <i
           className="bi bi-caret-up-fill text-green-300 me-1"
           style={{ fontSize: "1.5rem" }}
@@ -55,8 +59,9 @@ export default function App() {
             label: "tracking-wider font-medium text-default-600",
             value: "text-foreground/60",
           }}
-          label="Low Risk"
+          label="Poor"
           value={65}
+          showValueLabel={true}
         />
       </div>
 
@@ -65,21 +70,15 @@ export default function App() {
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button endContent={<MoveUpRight size={15} />}>Company</Button>
-        <Button endContent={<MoveUpRight size={15} />}>Device</Button>
-        <Button endContent={<MoveUpRight size={15} />}>Forum</Button>
+        <Button endContent={<MoveUpRight size={15}/>}>Company</Button>
+        <Button endContent={<MoveUpRight size={15}/>}>Device</Button>
+        <Button endContent={<MoveUpRight size={15}/>}>Forum</Button>
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Twitter
-        </Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Website
-        </Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Google
-        </Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Twitter</Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Website</Button>
+        <Button size="sm" endContent={<SquareArrowOutUpRight size={15}/>}>Google</Button>
       </div>
     </div>
   );

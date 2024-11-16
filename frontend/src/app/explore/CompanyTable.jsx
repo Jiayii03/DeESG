@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -8,77 +8,75 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  getKeyValue,
   Spinner,
 } from "@nextui-org/react";
-import { useAsyncList } from "@react-stately/data";
+import { Avatar } from "@nextui-org/react";
+import companyData from "./companyData.json"; 
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [list, setList] = useState([]);
 
-  let list = useAsyncList({
-    async load({ signal }) {
-      let res = await fetch("https://swapi.py4e.com/api/people/?search", {
-        signal,
-      });
-      let json = await res.json();
-      setIsLoading(false);
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        setList(companyData); 
+      } catch (error) {
+        console.error("Error loading data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-      return {
-        items: json.results,
-      };
-    },
-    async sort({ items, sortDescriptor }) {
-      return {
-        items: items.sort((a, b) => {
-          let first = a[sortDescriptor.column];
-          let second = b[sortDescriptor.column];
-          let cmp =
-            (parseInt(first) || first) < (parseInt(second) || second) ? -1 : 1;
-
-          if (sortDescriptor.direction === "descending") {
-            cmp *= -1;
-          }
-
-          return cmp;
-        }),
-      };
-    },
-  });
+    loadData();
+  }, []);
 
   return (
     <Table
       removeWrapper
-      aria-label="Example table with client side sorting"
-      sortDescriptor={list.sortDescriptor}
-      onSortChange={list.sort}
+      aria-label="Company table with client-side data"
       classNames={{
         table: "min-h-[400px]",
       }}
     >
       <TableHeader>
-        <TableColumn key="name" allowsSorting>
-          Name
+        <TableColumn key="company_name">Company Name</TableColumn>
+        <TableColumn key="esg_score" allowsSorting>
+          ESG Score
         </TableColumn>
-        <TableColumn key="height" allowsSorting>
-          Height
+        <TableColumn key="number_of_devices" allowsSorting>
+          Number of Devices
         </TableColumn>
-        <TableColumn key="mass" allowsSorting>
-          Mass
+        <TableColumn key="number_of_employees" allowsSorting>
+          Number of Employees
         </TableColumn>
-        <TableColumn key="birth_year" allowsSorting>
-          Birth year
+        <TableColumn key="gtk" allowsSorting>
+          GTK
         </TableColumn>
       </TableHeader>
       <TableBody
-        items={list.items}
+        items={list}
         isLoading={isLoading}
         loadingContent={<Spinner label="Loading..." />}
       >
         {(item) => (
-          <TableRow key={item.name}>
+          <TableRow key={item.company_name}>
             {(columnKey) => (
-              <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+              <TableCell>
+                {columnKey === "company_name" ? (
+                  <div className="flex items-center gap-3">
+                    <Avatar
+                      src={item.avatar_url} 
+                      name={item.company_name}
+                      size="sm"
+                    />
+                    <span>{item.company_name}</span>
+                  </div>
+                ) : (
+                  item[columnKey]
+                )}
+              </TableCell>
             )}
           </TableRow>
         )}
