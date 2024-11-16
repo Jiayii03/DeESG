@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import {
   Table,
   TableHeader,
@@ -14,7 +14,7 @@ import {
 import { useAsyncList } from "@react-stately/data";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   let list = useAsyncList({
     async load({ signal }) {
@@ -76,10 +76,7 @@ export default function App() {
         loadingContent={<Spinner label="Loading..." />}
       >
         {(item) => (
-          <TableRow 
-          key={item.name}
-          className="border-t border-b border-gray-100"
-          >
+          <TableRow key={item.name}>
             {(columnKey) => (
               <TableCell>{getKeyValue(item, columnKey)}</TableCell>
             )}
