@@ -1,4 +1,4 @@
-import { DataStored as DataStoredEvent } from "../generated/EData/EData"
+import { DataStored as DataStoredEvent } from "../generated/EDataPoly/EDataPoly"
 import { DataStored } from "../generated/schema"
 
 export function handleDataStored(event: DataStoredEvent): void {
@@ -9,7 +9,7 @@ export function handleDataStored(event: DataStoredEvent): void {
   entity.methane_emissions = event.params.methane_emissions
   entity.NOx_emissions = event.params.NOx_emissions
   entity.PM_emissions = event.params.PM_emissions
-  entity.humidity = event.params.humidity 
+  entity.humidity = event.params.humidity
   entity.temperature = event.params.temperature
   entity.walletAddress = event.params.walletAddress
   entity.timestamp = event.params.timestamp
