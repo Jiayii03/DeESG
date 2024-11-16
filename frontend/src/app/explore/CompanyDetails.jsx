@@ -5,7 +5,7 @@ import { Info } from "lucide-react";
 import { Progress } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { MoveUpRight } from "lucide-react";
-import { SquareArrowOutUpRight } from "lucide-react";
+import Image from "next/image";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function App() {
@@ -13,11 +13,7 @@ export default function App() {
     <div className="flex flex-col border-e-2 p-3">
       <div className="flex justify-start items-center gap-3">
         <div>
-          <Avatar
-            src=""
-            size="lg"
-            radius="sm"
-          />
+          <Avatar src="" size="lg" radius="sm" />
         </div>
         <div className="flex gap-2 items-center">
           <div className="text-lg font-semibold">
@@ -71,15 +67,33 @@ export default function App() {
       </div>
 
       <div className="flex justify-start gap-3 p-3">
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Twitter
-        </Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Website
-        </Button>
-        <Button size="sm" endContent={<SquareArrowOutUpRight size={15} />}>
-          Google
-        </Button>
+        <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+          <Image
+            src="/Logo/twitterLogo.png"
+            alt="Twitter"
+            width={20}
+            height={20}
+          />
+          <span>Twitter</span>
+        </button>
+        <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+          <Image
+            src="/Logo/websiteLogo.svg"
+            alt="Website"
+            width={20}
+            height={20}
+          />
+          <span>Website</span>
+        </button>
+        <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+          <Image
+            src="/Logo/GoogleLogo.svg"
+            alt="Google"
+            width={20}
+            height={20}
+          />
+          <span>Google</span>
+        </button>
       </div>
     </div>
   );
