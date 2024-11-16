@@ -21,24 +21,30 @@ export default function Home() {
   const [showNouns, setShowNouns] = useState(false);
 
   return (
-    <main>
+    <main className={showNouns ? "font-vcr-osd-mono" : ""}>
       <div className="text-center">
+        <button
+          onClick={() => {
+            setShowNouns(!showNouns);
+            document.body.style.fontFamily = !showNouns
+              ? "var(--font-vcr)"
+              : "";
+          }}
+          className="fixed bottom-4 right-32 z-50"
+        >
+          <Image
+            src="/Nouns/nounsdaoButton.jpg"
+            alt={showNouns ? "Hide Nouns" : "Show Nouns"}
+            width={60}
+            height={60}
+            className="rounded-full hover:opacity-90 transition-opacity object-cover"
+          />
+        </button>
+
         <section>
           <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen mt-12 pt-32 py-12 mb-10">
-            {/* Add button above the title */}
-            <button
-              onClick={() => setShowNouns(!showNouns)}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors mb-4"
-            >
-              {showNouns ? "Hide Nouns" : "Powered with Nouns"}
-            </button>
-
             <div className="flex flex-col gap-8 row-start-2 items-center text-center max-w-6xl">
-              <h1
-                className={`text-5xl md:text-7xl lg:text-8xl tracking-tight ${
-                  showNouns ? "font-vcr-mono" : "font-instrument-sans"
-                }`}
-              >
+              <h1 className="text-5xl md:text-7xl lg:text-8xl tracking-tight font-instrument-sans">
                 <div className="h-[5vh]" />
                 <span className="text-green-600">Explore</span> the Future
                 <br />

@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/footer";
 import Providers from "./components/WagmiProvider";
 import { NextUIProvider } from "@nextui-org/react";
-import { Instrument_Sans } from 'next/font/google';
+import { Instrument_Sans } from "next/font/google";
 
 const suisseIntl = localFont({
   src: [
@@ -19,18 +19,18 @@ const suisseIntl = localFont({
       weight: "700",
       style: "normal",
     },
-    {
-      path: "./fonts/VCR_OSD_MONO_1.001.ttf",
-      weight: "400",
-      style: "normal",
-    },
   ],
   variable: "--font-suisse-intl",
 });
 
+const vcrFont = localFont({
+  src: "./fonts/VCR_OSD_MONO_1.001.ttf",
+  variable: "--font-vcr",
+});
+
 const instrumentSans = Instrument_Sans({
-  subsets: ['latin'],
-  variable: '--font-instrument-sans',
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
 });
 
 export const metadata = {
@@ -43,12 +43,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${instrumentSans.variable}`}>
+    <html
+      lang="en"
+      className={`${instrumentSans.variable} ${vcrFont.variable}`}
+    >
       <Head>
         <link rel="icon" href="/app_logo.png" />
       </Head>
       <body
-        className={`${suisseIntl.variable} antialiased bg-[#f6f6f6] min-h-[100vh] flex flex-col`}
+        className={`${instrumentSans.variable} ${vcrFont.variable} antialiased bg-[#f6f6f6] min-h-[100vh] flex flex-col`}
       >
         <NextUIProvider>
           <Providers>
