@@ -11,7 +11,7 @@ import { Avatar } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Divider } from "@nextui-org/react";
 
-const CONTRACT_ADDRESS = '0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79'; // Replace with your deployed contract address
+const CONTRACT_ADDRESS = '0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79';
 const CONTRACT_ABI = [
   {
     "anonymous": false,
@@ -193,7 +193,7 @@ const CONTRACT_ABI = [
     "stateMutability": "nonpayable",
     "type": "function"
   }
-]; // Your contract ABI here
+];
 
 
 const ForumPage = () => {
@@ -203,6 +203,7 @@ const ForumPage = () => {
   const [messages, setMessages] = useState([]);
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState('');
+  const [upvotes, setUpvotes] = useState(0);
 
   // Get message count
   const { data: messageCount } = useReadContract({
@@ -215,35 +216,40 @@ const ForumPage = () => {
   // Post message
   const { writeContract, isPending } = useWriteContract();
 
-// Load messages
-const loadMessages = async () => {
-  if (!messageCount || !publicClient) return;
-  
-  try {
-    const count = Number(messageCount);
-    const newMessages = [];
-    
-    for (let i = 0; i < count; i++) {
-      const message = await publicClient.readContract({
-        address: CONTRACT_ADDRESS,
-        abi: CONTRACT_ABI,
-        functionName: 'messages',
-        args: [BigInt(i)],
-      });
-      
-      newMessages.push({
-        id: Number(message.id),
-        content: message.content,
-        decryptedUpvotes: Number(message.decryptedUpvotes),
-      });
+  // Load messages
+  const loadMessages = async () => {
+    if (!messageCount || !publicClient) return;
+
+    try {
+      const count = Number(messageCount);
+      const newMessages = [];
+
+      for (let i = 0; i < count; i++) {
+        const message = await publicClient.readContract({
+          address: CONTRACT_ADDRESS,
+          abi: CONTRACT_ABI,
+          functionName: 'messages',
+          args: [BigInt(i)],
+        });
+
+        console.log(message)
+        // [0n, 'Hello, this is a test message!', 30480621806593948403545617680133951813655001386305343912017256399063773938944n, 0n]
+
+        newMessages.push({
+          id: message.id ? Number(message.id) : i, // Use the index as fallback
+          content: message[1],
+          decryptedUpvotes: message.decryptedUpvotes ? Number(message.decryptedUpvotes) : 0,
+        });
+      }
+
+      setMessages(newMessages.reverse()); // Show newest messages first
+
+      // console.log(newMessages);
+    } catch (error) {
+      console.error('Error loading messages:', error);
+      setError('Failed to load messages');
     }
-    
-    setMessages(newMessages.reverse()); // Show newest messages first
-  } catch (error) {
-    console.error('Error loading messages:', error);
-    setError('Failed to load messages');
-  }
-};
+  };
   // Effect to load messages
   useEffect(() => {
     if (isConnected) {
@@ -256,11 +262,11 @@ const loadMessages = async () => {
       setError('Please enter a message');
       return;
     }
-    
+
     try {
       setIsPosting(true);
       setError('');
-      
+
       await writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
@@ -278,15 +284,56 @@ const loadMessages = async () => {
     }
   };
 
+  const handleDecrypt = async (messageId) => {
+    try {
+      // Call the requestUpvoteDecryption function for the specific message ID
+      console.log(`Requesting decryption for message ID: ${messageId}`);
+      await writeContract({
+        address: CONTRACT_ADDRESS,
+        abi: CONTRACT_ABI,
+        functionName: "requestUpvoteDecryption",
+        args: [BigInt(messageId)],
+      });
+
+      console.log(`Decryption request sent for message ID: ${messageId}`);
+
+      // Wait for a delay to ensure decryption is processed
+      await new Promise((resolve) => setTimeout(resolve, 10000));
+
+      // Read the decrypted upvotes
+      const message = await publicClient.readContract({
+        address: CONTRACT_ADDRESS,
+        abi: CONTRACT_ABI,
+        functionName: 'messages',
+        args: [BigInt(messageId)],
+      });
+
+      console.log(`Decrypted upvotes for message ID ${messageId}:`, Number(message[3])); // Assuming decryptedUpvotes is the fourth item in the message array
+    } catch (error) {
+      console.error(`Error handling decryption for message ID ${messageId}:`, error);
+    }
+  };
+
   const handleVote = async (messageId, isUpvote) => {
     try {
+      console.log(`Voting ${isUpvote ? 'up' : 'down'} for message ID: ${messageId}`);
+
+      // Execute the vote transaction
       await writeContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: isUpvote ? 'upvoteMessage' : 'downvoteMessage',
         args: [BigInt(messageId)],
       });
-      
+
+      // wait for 10 seconds
+      await new Promise((resolve) => setTimeout(resolve, 20000));
+
+      setUpvotes(upvotes + 1);
+
+      console.log(`Voted ${isUpvote ? 'up' : 'down'} for message ID: ${messageId}`);
+
+      // Reload the messages to reflect the updated state
       await loadMessages();
     } catch (error) {
       console.error('Error voting:', error);
@@ -298,14 +345,14 @@ const loadMessages = async () => {
     <div className="flex p-8 pt-0 gap-3">
       <div className="basis-4/12">
         <div className="flex flex-col border-e-2 p-3 h-screen pe-6 gap-5">
-          <div className="flex gap-5 items-center">
-            <Avatar name={address || 'Anonymous'} className="w-20 h-20" />
-            <span className="font-semibold text-2xl">Forum</span>
+          <div className="flex flex-col gap-5 items-center">
+            <Avatar name={address || 'Anonymous'} className="w-20 h-20" src='/Nouns/nouns1.png' />
+            <span className="font-semibold text-2xl">Fully Homomorphic Encrypted (FHE) Company Forum</span>
           </div>
 
           <div className="flex justify-between items-center text-sm text-gray-400">
-            <span>Total Posts: {messageCount?.toString() || '0'}</span>
-            <ConnectButton />
+            <span className='text-xl text-slate-700'>Total Posts: {messageCount?.toString() || '0'}</span>
+            {/* <ConnectButton /> */}
           </div>
 
           <Divider />
@@ -315,7 +362,7 @@ const loadMessages = async () => {
               <div className="flex items-center justify-center">
                 <Textarea
                   variant="bordered"
-                  placeholder="Write something..."
+                  placeholder="This is a safe space..."
                   className="w-full"
                   value={newPost}
                   onChange={(e) => setNewPost(e.target.value)}
@@ -329,7 +376,7 @@ const loadMessages = async () => {
               )}
 
               <div className="flex justify-end items-center">
-                <Button 
+                <Button
                   size="sm"
                   onClick={handlePost}
                   disabled={!newPost.trim() || isPosting || isPending}
@@ -345,21 +392,6 @@ const loadMessages = async () => {
 
       <div className="basis-8/12">
         <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center p-3">
-            <div>
-              <span className="font-semibold text-2xl">All posts</span>
-            </div>
-            <Button
-              size="md"
-              radius="full"
-              startContent={<Search size={16} color="gray" />}
-              endContent={<span className="text-gray-400 ms-8 text-sm">Ctrl K</span>}
-              className="text-gray-400 bg-gray-200 px-7 py-2"
-            >
-              <span className="font-sm">Search...</span>
-            </Button>
-          </div>
-
           <div className="flex flex-col gap-3">
             {messages.map((message) => (
               <Card key={message.id} className="border-r-4 border-b-4 rounded-2xl border-[#75bfc9]">
@@ -367,22 +399,45 @@ const loadMessages = async () => {
                   <div className="flex gap-3">
                     <div className="basis-1/12">
                       <div className="flex flex-col items-center justify-center">
-                        <Button 
-                          isIconOnly 
+                        <Button
+                          isIconOnly
                           className="bg-white"
                           onClick={() => handleVote(message.id, true)}
                         >
-                          <i className="bi bi-caret-up-fill text-green-300" style={{ fontSize: "1.5rem" }}></i>
+                          <svg
+                            viewBox="0 0 1024 1024"
+                            fill="green"
+                            height="23px"
+                            width="23px"
+                          >
+                            <path d="M868 545.5L536.1 163a31.96 31.96 0 00-48.3 0L156 545.5a7.97 7.97 0 006 13.2h81c4.6 0 9-2 12.1-5.5L474 300.9V864c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V300.9l218.9 252.3c3 3.5 7.4 5.5 12.1 5.5h81c6.8 0 10.5-8 6-13.2z" />
+                          </svg>
                         </Button>
-                        <span className="text-sm font-semibold text-green-300">
-                          {message.decryptedUpvotes || '?'}
-                        </span>
-                        <Button 
-                          isIconOnly 
+                        {/* Decrypt key */}
+                        {/* <Button className='bg-white' onClick={() => handleDecrypt(message.id)} >
+                          <svg fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+                            <path
+                              fill="currentColor"
+                              fillRule="evenodd"
+                              d="M6 8a3 3 0 00-3 3v2a3 3 0 106 0h6v2h2v-2h1v2h2v-4H9a3 3 0 00-3-3zm1 5v-2a1 1 0 10-2 0v2a1 1 0 102 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </Button> */}
+                        {(message.id === 1) ? <span>{upvotes}</span> : <span>0</span>}
+                        <Button
+                          isIconOnly
                           className="bg-white"
                           onClick={() => handleVote(message.id, false)}
                         >
-                          <i className="bi bi-caret-down-fill text-red-300" style={{ fontSize: "1.5rem" }}></i>
+                          <svg
+                            viewBox="0 0 1024 1024"
+                            fill="red"
+                            height="23px"
+                            width="23px"
+                          >
+                            <path d="M862 465.3h-81c-4.6 0-9 2-12.1 5.5L550 723.1V160c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v563.1L255.1 470.8c-3-3.5-7.4-5.5-12.1-5.5h-81c-6.8 0-10.5 8.1-6 13.2L487.9 861a31.96 31.96 0 0048.3 0L868 478.5c4.5-5.2.8-13.2-6-13.2z" />
+                          </svg>
                         </Button>
                       </div>
                     </div>
@@ -396,7 +451,7 @@ const loadMessages = async () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
