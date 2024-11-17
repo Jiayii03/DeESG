@@ -91,27 +91,32 @@ Withdraw our native token (GTK) from IoT Smart Wallet
 
 ### Chainlink
 
-Operator:0xb3DCb1123C23432c9a93632D808c3Ddd03069a88(sepolia)
-RunJob:0x3B0E43A42Cfaa2AC75B662dc69702468B5A93Ec6(sepolia)
-RunAIJob:0x33652136957dE346e0b5B0Cf04038B18B55e9D1D(sepolia)
-CompanyDetails:0x101535944e89e03734d7f09A6cbF510A95139E6D(sepolia)
+# Deployed Smart Contracts
 
-membernft: 0x9bb958398cc7695Dd5Ec19c3da55B71dfAEEe44e(inco)
-memberfactory: 0xAc79750aB0C1555210d8a478Bd63fD830399c05d(inco)
+## Sepolia Network
 
-smartwallet: 0xeFC2878dC0529f11Fd2BD1Cb78aA885E41cE94aa
+- **Operator:** [0xb3DCb1123C23432c9a93632D808c3Ddd03069a88](https://sepolia.etherscan.io/address/0xb3DCb1123C23432c9a93632D808c3Ddd03069a88)
+- **RunJob:** [0x3B0E43A42Cfaa2AC75B662dc69702468B5A93Ec6](https://sepolia.etherscan.io/address/0x3B0E43A42Cfaa2AC75B662dc69702468B5A93Ec6)
+- **RunAIJob:** [0x33652136957dE346e0b5B0Cf04038B18B55e9D1D](https://sepolia.etherscan.io/address/0x33652136957dE346e0b5B0Cf04038B18B55e9D1D)
+- **CompanyDetails:** [0x101535944e89e03734d7f09A6cbF510A95139E6D](https://sepolia.etherscan.io/address/0x101535944e89e03734d7f09A6cbF510A95139E6D)
 
-DataStorage deployed to: 0xDcab8f95ffE674Fb14ca2A2a56F032709bdE4102
-GreenToken deployed to: 0x85f9BA54CB1D11F9456e3258F8107263b809379B
-GreenTokenDistributor deployed to: 0x9D127915418dca2B3397De1f536e397462b6DC39
+## Inco Network
 
-AggregatedESGStorage deployed to: 0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0
+- **MemberNFT:** [0x9bb958398cc7695Dd5Ec19c3da55B71dfAEEe44e](https://etherscan.io/address/0x9bb958398cc7695Dd5Ec19c3da55B71dfAEEe44e)
+- **MemberFactory:** [0xAc79750aB0C1555210d8a478Bd63fD830399c05d](https://etherscan.io/address/0xAc79750aB0C1555210d8a478Bd63fD830399c05d)
+- **AnonymousMessageBoard:** [0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79](https://etherscan.io/address/0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79)
+- **FactoryMessageBoard:** [0x55D09eC366fe1c61b6EE922236BfEECB9b025C66](https://etherscan.io/address/0x55D09eC366fe1c61b6EE922236BfEECB9b025C66)
 
-### Inco Smart Contract
+## Smart Wallet (Multi-chain - Scroll, Polygon, Zircuit, Linea)
 
-AnonymousMessageBoard.sol: 0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79
+- **SmartWallet:** [0xeFC2878dC0529f11Fd2BD1Cb78aA885E41cE94aa](https://etherscan.io/address/0xeFC2878dC0529f11Fd2BD1Cb78aA885E41cE94aa)
 
-FactoryMessageBoard.sol: 0x55D09eC366fe1c61b6EE922236BfEECB9b025C66
+## Additional Smart Contracts (Multi-chain - Scroll, Polygon, Zircuit, Linea)
+
+- **DataStorage:** [0xDcab8f95ffE674Fb14ca2A2a56F032709bdE4102](https://etherscan.io/address/0xDcab8f95ffE674Fb14ca2A2a56F032709bdE4102)
+- **GreenToken:** [0x85f9BA54CB1D11F9456e3258F8107263b809379B](https://etherscan.io/address/0x85f9BA54CB1D11F9456e3258F8107263b809379B)
+- **GreenTokenDistributor:** [0x9D127915418dca2B3397De1f536e397462b6DC39](https://etherscan.io/address/0x9D127915418dca2B3397De1f536e397462b6DC39)
+- **AggregatedESGStorage:** [0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0](https://etherscan.io/address/0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0)
 
 ## Links
 
