@@ -90,6 +90,7 @@ Withdraw our native token (GTK) from IoT Smart Wallet
 Operator:0xb3DCb1123C23432c9a93632D808c3Ddd03069a88(sepolia)
 RunJob:0x3B0E43A42Cfaa2AC75B662dc69702468B5A93Ec6(sepolia)
 RunAIJob:0x33652136957dE346e0b5B0Cf04038B18B55e9D1D(sepolia)
+CompanyDetails:0x101535944e89e03734d7f09A6cbF510A95139E6D(sepolia)
 
 membernft: 0x9bb958398cc7695Dd5Ec19c3da55B71dfAEEe44e(inco)
 memberfactory: 0xAc79750aB0C1555210d8a478Bd63fD830399c05d(inco)
