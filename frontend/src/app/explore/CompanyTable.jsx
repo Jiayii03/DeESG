@@ -16,7 +16,7 @@ import companyData from "./companyData.json";
 export default function CompanyTable({ onRowClick }) {
   const [isLoading, setIsLoading] = useState(true);
   const [list, setList] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null); // State to track selected row
+  const [selectedRow, setSelectedRow] = useState(null); // Track selected row
 
   useEffect(() => {
     const loadData = async () => {
@@ -36,14 +36,22 @@ export default function CompanyTable({ onRowClick }) {
   // Set the first row as selected by default after data is loaded
   useEffect(() => {
     if (list.length > 0) {
-      setSelectedRow(list[0]);
-      onRowClick(list[0]); // Trigger the callback with the first row data
+      const firstItem = {
+        ...list[0],
+        avatarUrl: `companies_nouns/company${(0 % 10) + 1}.svg`,
+      };
+      setSelectedRow(firstItem);
+      onRowClick(firstItem); // Trigger callback with the first row data
     }
   }, [list, onRowClick]);
 
-  const handleRowClick = (item) => {
-    setSelectedRow(item);
-    onRowClick(item); // Notify parent component
+  const handleRowClick = (item, index) => {
+    const itemWithAvatar = {
+      ...item,
+      avatarUrl: `companies_nouns/company${(index % 10) + 1}.svg`,
+    };
+    setSelectedRow(itemWithAvatar);
+    onRowClick(itemWithAvatar); // Notify parent component
   };
 
   return (
@@ -56,18 +64,10 @@ export default function CompanyTable({ onRowClick }) {
     >
       <TableHeader>
         <TableColumn key="company_name">Company Name</TableColumn>
-        <TableColumn key="esg_score" allowsSorting>
-          ESG Score
-        </TableColumn>
-        <TableColumn key="number_of_devices" allowsSorting>
-          Number of Devices
-        </TableColumn>
-        <TableColumn key="number_of_employees" allowsSorting>
-          Number of Employees
-        </TableColumn>
-        <TableColumn key="gtk" allowsSorting>
-          GTK
-        </TableColumn>
+        <TableColumn key="esg_score">ESG Score</TableColumn>
+        <TableColumn key="number_of_devices">Number of Devices</TableColumn>
+        <TableColumn key="number_of_employees">Number of Employees</TableColumn>
+        <TableColumn key="gtk">GTK</TableColumn>
       </TableHeader>
       <TableBody
         items={list}
@@ -83,12 +83,7 @@ export default function CompanyTable({ onRowClick }) {
           return (
             <TableRow
               key={item.company_name}
-              onClick={() =>
-                handleRowClick({
-                  ...item,
-                  avatarUrl: `companies_nouns/company${(index % 10) + 1}.svg`,
-                })
-              }
+              onClick={() => handleRowClick(item, index)}
               className={`cursor-pointer hover:bg-gray-100 ${
                 isSelected ? "bg-gray-200" : ""
               }`}
@@ -103,7 +98,6 @@ export default function CompanyTable({ onRowClick }) {
                         size="sm"
                         fallback={item.company_name.slice(0, 3).toUpperCase()}
                       />
-
                       <span>{item.company_name}</span>
                     </div>
                   ) : (

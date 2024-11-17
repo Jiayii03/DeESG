@@ -3,17 +3,17 @@ import { Avatar } from "@nextui-org/avatar";
 import { Chip } from "@nextui-org/react";
 import { Info } from "lucide-react";
 import { Progress } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { MoveUpRight } from "lucide-react";
+// import { Button } from "@nextui-org/react";
+// import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 export default function CompanyDetails({ selectedCompany }) {
   if (!selectedCompany) {
     return <p>Select a company to view its details.</p>;
   }
 
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <div className="flex flex-col border-e-2 p-3">
@@ -30,7 +30,7 @@ export default function CompanyDetails({ selectedCompany }) {
           </div>
         </div>
         <div>
-          <Chip radius="sm" size="sm" startContent={<span>#</span>}>
+          <Chip radius="sm" size="sm" endContent={<span>GTK</span>}>
             {selectedCompany.gtk}
           </Chip>
         </div>
@@ -61,7 +61,7 @@ export default function CompanyDetails({ selectedCompany }) {
         <DetailsTable />
       </div>
 
-      <div className="flex justify-start gap-3 p-3">
+      {/* <div className="flex justify-start gap-3 p-3">
         <Button
           endContent={<MoveUpRight size={15} />}
           onPress={() => router.push("/company")}
@@ -80,7 +80,7 @@ export default function CompanyDetails({ selectedCompany }) {
         >
           Forum
         </Button>
-      </div>
+      </div> */}
 
       <div className="flex justify-start gap-3 p-3">
         <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">

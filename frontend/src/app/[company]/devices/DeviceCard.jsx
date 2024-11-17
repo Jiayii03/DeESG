@@ -6,7 +6,7 @@ import { Card, CardBody, CardHeader, CardFooter, Button } from "@nextui-org/reac
 import { Avatar } from "@nextui-org/react";
 import { MoveLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { smartwalletABI, smartwalletAddress } from "../../contractsABIs/smartwallet";
+import { smartwalletABI, smartwalletAddress } from "../../abis/smartwallet";
 
 export default function DeviceCard() {
   const router = useRouter();
