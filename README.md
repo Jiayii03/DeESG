@@ -87,6 +87,8 @@ Withdraw our native token (GTK) from IoT Smart Wallet
 
 ## Smart Contract Addresses:
 
+### Chainlink
+
 Operator:0xb3DCb1123C23432c9a93632D808c3Ddd03069a88(sepolia)
 RunJob:0x3B0E43A42Cfaa2AC75B662dc69702468B5A93Ec6(sepolia)
 RunAIJob:0x33652136957dE346e0b5B0Cf04038B18B55e9D1D(sepolia)
@@ -102,7 +104,11 @@ GreenTokenDistributor deployed to: 0x9D127915418dca2B3397De1f536e397462b6DC39
 
 AggregatedESGStorage deployed to: 0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0
 
+### Inco Smart Contract
+
+AnonymousMessageBoard.sol: 0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79
+FactoryMessageBoard.sol: 0x55D09eC366fe1c61b6EE922236BfEECB9b025C66
+
 ## Links
 
-1. DeESG Landing Page:
-2.git p
+1. DeESG Landing Page: 
