@@ -40,6 +40,8 @@ Scroll Sepolia Testnet, Polygon Amoy, Inco Rivest Testnet, Zircuit Testnet, Line
 
 ### Data Integration and Automation
 
+![Hosted Image](https://cdn.discordapp.com/attachments/1202039467003887626/1307509965963001856/Chainlink-architecture.jpg?ex=673a910c&is=67393f8c&hm=3a1acbcd56288af5403c7a7774416bf0a7729a5ea6e90ebab239b0a59faf323b& "Chainlink Architecture")
+
 _Chainlink:_
 
 Chainlink Automation: Schedule data retrieval from IoT sensor devices.
@@ -108,6 +110,7 @@ AggregatedESGStorage deployed to: 0xF96Def7ec929b95A63DBfD456Cf04d22164F11a0
 ### Inco Smart Contract
 
 AnonymousMessageBoard.sol: 0xdCD4D37ED647122bB02bEB38470Ab8c93bDf3c79
+
 FactoryMessageBoard.sol: 0x55D09eC366fe1c61b6EE922236BfEECB9b025C66
 
 ## Links
