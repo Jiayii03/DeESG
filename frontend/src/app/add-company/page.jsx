@@ -7,6 +7,7 @@ import {
   Autocomplete,
   AutocompleteItem,
   Avatar,
+  Spinner,
 } from "@nextui-org/react";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -21,6 +22,7 @@ function Page() {
   const { address, isConnected } = useAccount();
   const [nounsIndex, setNounsIndex] = useState(0); // Track current Nouns avatar index
   const [nounsAvatar, setNounsAvatar] = useState("");
+  const [loading, setLoading] = useState(false); // Track loading state
 
   const sectors = [
     { value: "technology", label: "Technology" },
@@ -91,6 +93,7 @@ function Page() {
     }
 
     try {
+      setLoading(true); // Show loading overlay
       const { ethereum } = window;
       if (!ethereum) {
         console.error("Ethereum object not found, please install MetaMask!");
@@ -98,21 +101,14 @@ function Page() {
         return;
       }
 
-      console.log("Ethereum object found:", ethereum);
-
-      await ethereum.request({ method: "eth_requestAccounts" });
-      console.log("Wallet connected");
-
       const provider = new ethers.BrowserProvider(ethereum);
       const signer = await provider.getSigner();
-      console.log("Signer retrieved:", signer);
 
       const contract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CompanyDetails.abi || CompanyDetails,
         signer
       );
-      console.log("Contract instance created:", contract);
 
       const tx = await contract.submitCompany(
         form.companyName,
@@ -121,21 +117,26 @@ function Page() {
         form.sector,
         nounsAvatar
       );
-      console.log("Transaction sent:", tx.hash);
 
       await tx.wait();
-      console.log("Transaction confirmed");
 
       alert("Company submitted successfully!");
       router.push("/company");
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       alert("Submission failed. Check the console for details.");
+    } finally {
+      setLoading(false); // Hide loading overlay
     }
   };
 
   return (
-    <div className="flex gap-3 mb-10">
+    <div className="flex gap-3 mb-10 relative">
+      {loading && (
+        <div className="absolute inset-0 bg-transparent bg-opacity-75 flex justify-center items-center z-50">
+          <Spinner size="lg" color="primary" />
+        </div>
+      )}
       <div className="basis-3/12"></div>
       <div className="basis-6/12">
         <div className="flex flex-col items-start gap-2">
@@ -165,7 +166,7 @@ function Page() {
           </Button>
 
           {isConnected ? (
-            <span>{address}</span>
+            <span></span>
           ) : (
             <span className="text-red-500">Please connect your wallet.</span>
           )}
@@ -237,7 +238,7 @@ function Page() {
 
         <div className="flex justify-end items-center mt-10">
           <Button
-            disabled={!isConnected}
+            disabled={!isConnected || loading}
             endContent={<MoveRight size={16} />}
             onPress={handleSubmit}
           >

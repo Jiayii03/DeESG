@@ -36,9 +36,9 @@ const companyQuery = gql`
 `;
 
 const esgQuery = gql`
-  query GetSecondLatestESGScore {
+  query GetLatestESGScore {
     aggregatedDataStoreds(
-      first: 2
+      first: 1
       orderBy: blockTimestamp
       orderDirection: desc
     ) {
@@ -51,17 +51,15 @@ const esgQuery = gql`
 export default function App() {
   const { address, isConnected } = useAccount();
   const [companyData, setCompanyData] = useState(null);
-  const [esgScore, setEsgScore] = useState(null);
+  const [esgScore, setEsgScore] = useState("--");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const targetAddress =
-    "0x75680726646e0F0B28Ea23D232808F25F8b3c829".toLowerCase();
 
   useEffect(() => {
     if (!isConnected || !address) {
       setCompanyData(null);
-      setEsgScore(null);
+      setEsgScore("--");
+      setLoading(false);
       return;
     }
 
@@ -76,20 +74,16 @@ export default function App() {
 
         setCompanyData(companyResult.companySubmitteds[0] || null);
 
-        // Fetch ESG score only for target wallet
-        if (address.toLowerCase() === targetAddress) {
-          const esgResult = await request(
-            process.env.NEXT_PUBLIC_SUBGRAPH_GET_ESG_ENDPOINT,
-            esgQuery
-          );
+        // Fetch latest ESG score
+        const esgResult = await request(
+          process.env.NEXT_PUBLIC_SUBGRAPH_GET_ESG_ENDPOINT,
+          esgQuery
+        );
 
-          setEsgScore(
-            esgResult.aggregatedDataStoreds[1]?.aggregatedESGScore || null
-          );
-        } else {
-          setEsgScore(null);
-        }
+        const latestEsgScore = esgResult.aggregatedDataStoreds[0]?.aggregatedESGScore;
+        setEsgScore(latestEsgScore || "--");
       } catch (error) {
+        console.error("Error fetching data:", error);
         setError("Failed to fetch data.");
       } finally {
         setLoading(false);
@@ -111,8 +105,7 @@ export default function App() {
     return <p>No company data found for this wallet.</p>;
   }
 
-  const { companyName, twitterHandle, companyWebsite, sector, avatarUrl } =
-    companyData;
+  const { companyName, twitterHandle, companyWebsite, sector, avatarUrl } = companyData;
 
   return (
     <div className="flex flex-col border-e-2 p-3">
@@ -132,24 +125,10 @@ export default function App() {
             <span>ESG Score</span>
           </div>
         </div>
-        {address.toLowerCase() !== targetAddress && (
-          <div>
-            <Chip
-              color="warning"
-              radius="sm"
-              size="sm"
-              startContent={<span>#</span>}
-            >
-              Pending
-            </Chip>
-          </div>
-        )}
       </div>
 
       <div className="flex mt-3 items-center p-3">
-        <span className="text-4xl me-3 font-semibold">
-          {address.toLowerCase() === targetAddress ? esgScore || "--" : "--"}
-        </span>
+        <span className="text-4xl me-3 font-semibold">{esgScore}</span>
         <Info size={15} className="text-gray-300 ms-2" />
       </div>
 
@@ -165,11 +144,7 @@ export default function App() {
             value: "text-foreground/60",
           }}
           label="ESG Score"
-          value={
-            address.toLowerCase() === targetAddress
-              ? parseFloat(esgScore) || 0
-              : 0
-          }
+          value={parseFloat(esgScore) || 0}
           showValueLabel={true}
         />
       </div>
