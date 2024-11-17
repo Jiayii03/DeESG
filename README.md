@@ -115,4 +115,4 @@ FactoryMessageBoard.sol: 0x55D09eC366fe1c61b6EE922236BfEECB9b025C66
 
 ## Links
 
-1. DeESG Landing Page: 
+1. DeESG Application: https://de-esg.vercel.app/
